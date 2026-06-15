@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Building2, FileStack, AlertTriangle, BarChart3, GraduationCap, ShieldCheck, ClipboardCheck } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { getModule } from '@/lib/storage'
@@ -21,16 +22,18 @@ export default function DashboardPage() {
           const data = getModule(key)
           const count = Array.isArray(data) ? data.length : Object.keys(data).length > 0 ? 1 : 0
           return (
-            <Card key={key} className="transition-shadow hover:shadow-md">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">{label}</CardTitle>
-                <Icon className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{count}</div>
-                <p className="text-xs text-muted-foreground">{desc}</p>
-              </CardContent>
-            </Card>
+            <Link key={key} to={`/${key}`} className="block transition-transform hover:scale-[1.02] active:scale-[0.98]">
+              <Card className="transition-shadow hover:shadow-md cursor-pointer h-full border border-border/80 hover:border-primary/30">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-sm font-medium">{label}</CardTitle>
+                  <Icon className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{count}</div>
+                  <p className="text-xs text-muted-foreground">{desc}</p>
+                </CardContent>
+              </Card>
+            </Link>
           )
         })}
       </div>

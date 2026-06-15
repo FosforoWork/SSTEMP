@@ -5,7 +5,7 @@ import {
   GraduationCap, ShieldCheck, ClipboardCheck, LayoutDashboard,
 } from 'lucide-react'
 
-const links = [
+export const links = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/empresa', label: 'Empresa', icon: Building2 },
   { to: '/cambios', label: 'Control Cambios', icon: FileStack },
