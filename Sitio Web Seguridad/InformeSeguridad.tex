@@ -1,0 +1,821 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- Paquetes de Idioma y Codificación ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{lmodern}
+
+% --- Configuración de Página ---
+\usepackage{geometry}
+\geometry{top=2.5cm, bottom=2.5cm, left=2cm, right=2cm}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\onehalfspacing
+
+% --- Paquetes de Diseño, Matemáticas y Gráficos ---
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{microtype}
+
+% --- Enlaces y Referencias ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=empacarblue,
+    urlcolor=empacarblue,
+    citecolor=empacarblue,
+    pdftitle={Programa de Gestión de Seguridad y Salud en el Trabajo - EMPACAR S.A.},
+    pdfauthor={División de Corrugado - EMPACAR S.A.}
+}
+
+% --- Definición de Colores ---
+\definecolor{empacarblue}{RGB}{0, 76, 153}
+\definecolor{darkgray}{RGB}{80, 80, 80}
+
+% --- Formato de Secciones ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{empacarblue}\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\color{empacarblue}\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% --- Configuración de Encabezados ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{darkgray}{\footnotesize Programa de Gestión de Seguridad y Salud en el Trabajo (SST)}}
+\fancyhead[R]{\textcolor{darkgray}{\footnotesize EMPACAR S.A. -- Convertidoras FFG}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --- Macros para Tablas de Control de Cambios y Revisión ---
+\newcommand{\controlcambios}{
+    \subsubsection*{Control de Cambios}
+    \begin{table}[H]
+        \centering
+        \small
+        \begin{tabular}{lp{4cm}p{4cm}p{4cm}}
+            \toprule
+            \textbf{Datos} & \textbf{Elaboración} & \textbf{Revisión} & \textbf{Aprobación} \\
+            \midrule
+            \textbf{Cargo} & & & \\
+            \textbf{Nombre} & & & \\
+            \textbf{Fecha} & & & \\
+            \textbf{Firma} & & & \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+}
+
+\newcommand{\resumenrevision}[1]{
+    \subsubsection*{Resumen de Revisión del Documento}
+    \begin{table}[H]
+        \centering
+        \small
+        \begin{tabular}{ccp{8cm}}
+            \toprule
+            \textbf{Versión} & \textbf{Fecha} & \textbf{Descripción de cambios} \\
+            \midrule
+            #1 & & \\
+            & & \\
+            & & \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+}
+
+% --- Inicio del Documento ---
+\begin{document}
+
+% --- Portada ---
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{empacarblue} PROGRAMA DE GESTIÓN DE SEGURIDAD\\Y SALUD EN EL TRABAJO\par}
+    \vspace{1.5cm}
+    {\Large\bfseries\color{darkgray} División de Corrugado -- Convertidoras FFG y Cocina de Tintas\par}
+    
+    \vspace{2.5cm}
+    
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \large
+        \begin{tabular}{ll}
+            \textbf{Empresa:} & EMPACAR S.A. \\
+            \textbf{Área/Proceso:} & Corrugado -- Convertidoras (JS, M5, T3, BK) \\
+            \textbf{Período:} & Gestión 2026 \\
+            \textbf{Documento:} & Informe Final de Seguridad Ocupacional \\
+        \end{tabular}
+    \end{minipage}
+    
+    \vfill
+    
+    {\large\color{darkgray} UCB -- 6to Semestre -- Seguridad Industrial\par}
+    {\large Junio 2026\par}
+    
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ==============================================================================
+% PUNTO 1
+% ==============================================================================
+\section{PUNTO 1: Comprensión de la actividad laboral y de su contexto en SST}
+\controlcambios
+\resumenrevision{}
+
+\subsection{1. Explicación Detallada del Proceso de Servicio}
+Para caracterizar formalmente la operación bajo estudio, se presenta a continuación la ficha de información técnica de la planta industrial:
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Información General de la Empresa}
+    \begin{tabular}{lp{10cm}}
+        \toprule
+        \textbf{Campo} & \textbf{Detalle} \\
+        \midrule
+        \textbf{Nombre de la empresa} & EMPACAR S.A. \\
+        \textbf{Nombre Comercial} & Empacar Corrugado \\
+        \textbf{Nº de NIT} & 1020473023 \\
+        \textbf{Departamento} & Santa Cruz \\
+        \textbf{Provincia} & Andrés Ibáñez \\
+        \textbf{Zona} & Parque Industrial, U.V. 32 \\
+        \textbf{Dirección de actividades} & Av. Mutualista esq. Calle 3, Parque Industrial, Santa Cruz de la Sierra \\
+        \textbf{Número de Teléfono} & +591 3 3462000 \\
+        \textbf{Actividad Principal} & Fabricación de envases y embalajes de cartón corrugado \\
+        \textbf{Otras actividades} & Reciclado de PET y transformación de plásticos \\
+        \textbf{Horas de trabajo Administrativo} & 08:00 -- 17:00 (Lunes a Viernes) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{1.1 Descripción del proceso}
+EMPACAR S.A. cuenta con una estructura organizacional por niveles administrativos y operativos. El staff de la empresa opera en instalaciones industriales propias dentro del Parque Industrial. En la sección de corrugado, el flujo operativo del área de dosificado de tintas y convertidoras FFG comprende las siguientes tareas físicas ejecutadas por el operario:
+
+\begin{enumerate}
+    \item \textbf{Recepción de Orden de Pedido}: El operario recibe la orden en la oficina de corrugado, especificando la tirada (de 5,000 a 50,000 cajas) y el área de diseño a imprimir. Esta tarea introduce una \textit{carga cognitiva y de presión de tiempo} debido a la necesidad de planificar múltiples cambios de clichés y tintas para cumplir con el programa diario sin generar paradas de línea improductivas.
+    \item \textbf{Traslado de Turriles de Tinta}: Movimiento físico de tambores de 200 kg desde el almacén hasta la cocina de tintas. El traslado se realiza principalmente con carretilla elevadora (montacargas), implicando esperas de disponibilidad de equipo. Si el montacargas no está disponible, surge el riesgo de que el operario intente mover o pivotar el turril manualmente, lo que eleva el riesgo de lesiones de columna.
+    \item \textbf{Dosificación en Cocina de Tintas}: Preparación de la fórmula cromática y llenado de baldes de 20 a 25 kg. Se opera con 14 bases de tinta al agua para preparar los colores del catálogo. La manipulación manual de polvos pigmentados, aditivos y bases líquidas genera riesgos de inhalación y contacto dérmico directo.
+    \item \textbf{Traslado a Convertidoras}: Transporte manual de los baldes cargados hasta las zonas de alimentación de las prensas flexográficas (máquinas JS, BK, T3 y Macarbox M5). Implica caminar distancias con carga asimétrica, comprometiendo la postura ergonómica del operario.
+    \item \textbf{Alimentación y Recirculación en Prensa}: Conexión de mangueras a las bombas hidráulicas de trasvase para alimentar la cámara de rasquetas y rodillos anilox. Esta operación genera riesgo de salpicaduras a los ojos debido a la presión residual acumulada en las líneas.
+    \item \textbf{Operación de Impresión y Lavado}: Limpieza de mangueras, batido físico de tintas acumuladas en turriles y mantenimiento de bombas por atascos debido a la alta viscosidad del fluido (tixotropía). El uso de agentes de limpieza alcalinos y solventes suaves incrementa la exposición a vapores orgánicos e irritantes químicos.
+\end{enumerate}
+
+\subsubsection{Registro fotográfico}
+\begin{itemize}
+    \item \textbf{Foto N.º 1}: Vista de ingreso al área de convertidoras y cocina de tintas, donde se aprecia la delimitación de las zonas de tránsito peatonal y de maquinaria autopropulsada.
+\end{itemize}
+
+\subsubsection{1.2 Requisitos Preliminares}
+\begin{itemize}
+    \item \textbf{i. Infraestructura}: Nave industrial acondicionada con cocina de tintas, almacén de turriles, área de convertidoras FFG y oficinas de planificación. Se debe garantizar una ventilación general forzada para diluir contaminantes y un diseño estructural con diques de contención química para evitar la dispersión de vertidos de tinta.
+    \item \textbf{ii. Maquinaria y/o equipos}: Convertidoras flexográficas slotter folder-gluer (Macarbox M5, JS, T3, BK), dosificadora automática DOS-01, bombas hidráulicas de diafragma y bombas de cavidad progresiva. Toda maquinaria rotativa debe poseer resguardos físicos fijos e interbloqueos eléctricos según la norma ISO 14119.
+    \item \textbf{iii. Instalaciones Eléctricas}: Tableros de fuerza trifásica para prensas, acometidas blindadas de alimentación a motores y dosificadora DOS-01 con conexión de puesta a tierra. Debido a la naturaleza húmeda del proceso de lavado de tintas y bombas, todos los tomacorrientes e interruptores en la cocina de tintas y periferia de prensas deben cumplir con el grado de protección contra ingreso \textbf{IP55 o superior} (protección contra chorros de agua y acumulación perjudicial de polvo) según IEC 60529, y contar con dispositivos de interrupción por falla a tierra (GFCI) conforme a la NFPA 70 (National Electrical Code).
+    \item \textbf{v. Herramientas Manuales y Portátiles}: Batidor manual (pala), acoples rápidos de mangueras, llaves mecánicas, y \textit{Drum Pitcher} manual. No se requiere el uso de herramientas acondicionadas por fuerza motriz para las tareas normales del dosificador. Las herramientas manuales deben ser inspeccionadas periódicamente para prevenir lesiones mecánicas.
+    \item \textbf{vi. Calderos y Recipientes a presión}: No aplica en el proceso directo de dosificado de tintas en la cocina. Sin embargo, las tuberías de aire comprimido asociadas a las bombas de diafragma se consideran sistemas a presión y deben cumplir con las revisiones periódicas de integridad estructural e inspección de válvulas de alivio.
+    \item \textbf{vii. Hornos y Secadores}: No aplica en el proceso de tintas.
+    \item \textbf{viii. Sustancias Peligrosas}: Tintas flexográficas base agua (químicamente no inflamables pero con base básica), aminas secundarias para control de pH (estabilización), y detergentes químicos para limpieza de rodillos y mangueras. \textit{Perfil Toxicológico y Clínico}: Las aminas estabilizadoras de pH (como monoethanolamine - MEA) tienen carácter básico fuerte ($pH \in [9.0, 10.0]$). Su contacto dérmico agudo destruye la barrera lipídica epidérmica, causando quemaduras químicas y dermatitis de contacto irritativa. Por vía inhalatoria, los vapores concentrados causan broncoconstricción reactiva e inflamación de la mucosa respiratoria. La exposición crónica sin protección respiratoria adecuada se asocia con el desarrollo de asma ocupacional y sensibilización inmunológica de tipo retardado (dermatitis alérgica).
+    \item \textbf{ix. Radiaciones Peligrosas}: No aplica.
+    \item \textbf{x. Prevención y Protección contra Incendios}: Almacén de cartón corrugado y papel Kraft con alta carga de fuego. Se cuenta con red de hidrantes, extintores de PQS y de $CO_2$ distribuidos en la cocina de tintas y convertidoras de acuerdo con NFPA 10 (Extintores Portátiles) y el diseño del almacenamiento de celulosa bajo las directrices de NFPA 230 (Estándar para la Protección de Almacenamiento).
+\end{itemize}
+
+\subsection{2.1 Bienestar}
+\begin{itemize}
+    \item \textbf{i. Alimentación}: El horario de turnos permite a los operarios desplazarse a sus domicilios o al comedor central. \textit{Evaluación de Nutrición y Salud}: De acuerdo con la norma de bienestar NTS-011/20, se vigila el aporte metabólico y calórico del personal operativo que trabaja en turnos.
+    \item \textbf{ii. Comedores}: Se dispone de cocinetas y comedor central climatizado con aire acondicionado y campana de extracción para garantizar un espacio higiénico y termorregulador.
+    \item \textbf{iii. Transporte}: Todo el personal se traslada por sus propios medios (vehículos propios o transporte público de la zona industrial). Cumplimiento con las directrices de transporte seguro para evitar accidentes in itinere.
+    \item \textbf{iv. Vivienda}: No aplica en el caso de EMPACAR S.A.
+    \item \textbf{v. Medios de Recreación}: No aplica.
+    \item \textbf{vi. Guarderías}: No aplica en el caso de EMPACAR S.A.
+\end{itemize}
+\textit{Prevención Médica del Estrés Térmico}: Debido a que la planta corrugadora genera calor radiante significativo, se implementan puntos de hidratación obligatorios. Desde la perspectiva fisiológica, el operario debe reponer líquidos de forma constante (tasa recomendada de 250 ml cada 20-30 minutos) para evitar la deshidratación y prevenir el estrés térmico inducido. Clínicamente, el estrés por calor no compensado provoca una reducción de la tasa de filtración glomerular, hemoconcentración e incremento de la viscosidad sanguínea, elevando el riesgo de nefrolitiasis, rabdomiólisis y lesión renal aguda (LRA).
+
+\subsection{2.2 Protección de la Salud}
+\begin{itemize}
+    \item \textbf{i. Abastecimiento de Agua}: Dotación de botellones de agua purificada en todos los puestos operativos, cocina de tintas y oficinas de corrugado. \textit{Seguridad Sanitaria}: El agua de consumo cumple estrictamente con los parámetros físico-químicos y bacteriológicos establecidos en la norma boliviana \textbf{NB 512} (Calidad del Agua para Consumo Humano). Fisiológicamente, el control bacteriológico periódico previene brotes de gastroenteritis infecciosa por enterobacterias, las cuales causan deshidratación secundaria y ausentismo laboral.
+    \item \textbf{ii. Orden y Limpieza}: Implementación de un layout dinámico basado en la clasificación ABC de bases de tinta para reducir el hacinamiento en cocina, conforme a las directrices de orden y limpieza de la norma boliviana de bienestar NTS-012/20.
+    \item \textbf{iii. Servicios Higiénicos}: Baños y duchas diferenciadas en vestuarios de planta para permitir que el operario se duche al finalizar el turno, previniendo el transporte accidental de residuos químicos a su hogar.
+    \item \textbf{iv. Vestuarios y Casilleros}: Casilleros individuales metálicos provistos para el personal de planta, asegurando la separación física entre la ropa de calle y la ropa de trabajo contaminada.
+\end{itemize}
+
+\subsection{2.3 Señalización}
+Señalización de rutas de evacuación, puntos de encuentro, uso obligatorio de EPP en planta, identificación de tuberías de agua, aire comprimido y líneas químicas de acuerdo con la norma boliviana \textbf{NB 55001} y el estándar internacional \textbf{ISO 7010}. Se establece una codificación cromática rigurosa: Rojo para equipos de extinción de incendios y prohibición; Amarillo para advertencia de zonas de peligro de atrapamiento o caída; Azul para uso obligatorio de EPP; y Verde para rutas de escape y camillas de primeros auxilios.
+
+\subsection{2.4 Bioseguridad}
+Durante la gestión 2020 a 2022 EMPACAR S.A. ha cumplido con la presentación de los protocolos de bioseguridad en los plazos establecidos por las autoridades competentes. Actualmente, se mantiene un protocolo de vigilancia epidemiológica activa para mitigar el riesgo de infecciones respiratorias agudas mediante la higienización de herramientas de uso compartido, ventilación constante de áreas de control y tamizaje clínico preventivo ante sintomatología respiratoria.
+
+\newpage
+% ==============================================================================
+% PUNTO 2
+% ==============================================================================
+\section{PUNTO 2: Liderazgo y Compromiso de SST}
+\controlcambios
+\resumenrevision{1}
+
+\subsection{2.1. Política de SST}
+EMPACAR S.A. cuenta con una política y objetivos que denotan el compromiso de la gerencia con la seguridad y la salud de sus trabajadores en todas sus operaciones. La alta dirección asume la responsabilidad de liderar el sistema de gestión de seguridad, promoviendo de forma activa la prevención de lesiones y enfermedades de origen ocupacional. Específicamente, se asegura la asignación presupuestaria y de recursos técnicos para mitigar los riesgos de fatiga lumbar, sobreesfuerzo ergonómico y exposición química en la cocina de tintas. 
+
+\textit{Evolución Cultural y Desempeño Humano (HOP)}: La gerencia impulsa la transición de la organización a lo largo de la \textbf{Escalera de Madurez de Hudson}, buscando superar el nivel ``Calculador'' (gestión basada meramente en reglas reactivas y cumplimiento documental) para consolidar una cultura ``Proactiva'' y eventualmente ``Generativa'', donde la seguridad es inherente al modelo de negocio. Para ello, se adoptan los principios del Desempeño Humano y Organizacional (HOP), asumiendo que:
+\begin{itemize}
+    \item El error humano es un síntoma de fallas latentes en el diseño del sistema o del entorno de trabajo, no la causa raíz de un incidente.
+    \item Se debe promover una \textbf{Cultura Justa (Just Culture)}, erradicando los enfoques punitivos que culpan individualmente al trabajador, lo cual permite que los operarios reporten libremente desvíos, fatiga o fallas mecánicas en las bombas de tinta antes de que se materialice un accidente.
+\end{itemize}
+
+En el Anexo 2A se observan los respaldos y registros de la difusión de sus políticas al personal de la división de corrugado.
+
+\subsection{2.2. Organización de la Compañía}
+De acuerdo con la estructura organizacional de la compañía, se establece una línea de supervisión directa y un flujo bidireccional desde el área de SMA (Seguridad y Medio Ambiente) hacia el área operativa de corrugado, manteniendo personal de supervisión técnica en planta de forma continua. Se definen roles específicos para el Director de Planta, los Supervisores de Línea, el Técnico de SST y los Operarios, garantizando que el cumplimiento de los estándares de higiene y seguridad forme parte de la evaluación de desempeño y la rendición de cuentas en todos los niveles jerárquicos.
+
+\newpage
+% ==============================================================================
+% PUNTO 3
+% ==============================================================================
+\section{PUNTO 3: Comité Mixto de Higiene, Seguridad Ocupacional y Bienestar}
+\controlcambios
+\resumenrevision{1}
+
+\subsection{3.1. Comité Mixto}
+De acuerdo con la legislación laboral boliviana establecida en el **Decreto Ley Nº 16998** (Artículos 30 al 36) y la **NTS-009/23**, se conforma y registra oficialmente ante el Ministerio de Trabajo el Comité Mixto de Higiene y Seguridad de la Planta Corrugado:
+\begin{itemize}
+    \item \textbf{a. Representación Paritaria y Estructura}: Formado de forma paritaria por representantes electos de los trabajadores de planta y representantes designados por la parte empleadora. Cuenta con un Presidente y un Secretario cuyas funciones rotan anualmente para asegurar el equilibrio de poder.
+    \item \textbf{b. Capacitación y Competencias}: Los miembros del Comité Mixto cuentan con el Certificado de capacitación virtual en seguridad industrial, primeros auxilios y medicina del trabajo avalado por la autoridad competente, garantizando la comprensión técnica de los riesgos de la planta.
+    \item \textbf{c. Consulta y Participación Activa}: En cumplimiento con la cláusula \textbf{5.4 de la norma ISO 45001:2018}, el Comité Mixto funciona como el canal prioritario para la consulta y la participación de los trabajadores en la identificación de peligros y evaluación de riesgos. Realiza inspecciones conjuntas mensuales en la cocina de tintas y áreas de convertidoras JS, BK, T3 y M5, documentando los hallazgos en actas oficiales y participando en la revisión de los incidentes del área.
+    \item \textbf{d. Cronograma Anual}: Cronograma de reuniones mensuales ordinarias y extraordinarias, cuyas actas son presentadas de manera digital trimestralmente ante el Ministerio de Trabajo.
+\end{itemize}
+
+\newpage
+% ==============================================================================
+% PUNTO 4
+% ==============================================================================
+\section{PUNTO 4: Planificación}
+\controlcambios
+\resumenrevision{1}
+\subsection{4.1. Gestión de Riesgos Ocupacionales}
+
+\subsubsection{4.1.1 Identificación de Peligros y Evaluación de Riesgos (IPER)}
+La metodología de evaluación de riesgos por cargo laboral se enfoca en el puesto de operario de dosificación de tintas y operadores de convertidoras FFG. Para cuantificar la prioridad operativa e integrar un criterio técnico-económico auditable, se aplica la metodología de \textbf{William T. Fine}. 
+
+Esta metodología evalúa el riesgo a partir del cálculo matemático del \textbf{Grado de Peligrosidad (GP)}:
+\begin{equation}
+    GP = C \times E \times P
+\end{equation}
+Donde:
+\begin{itemize}
+    \item \textbf{Consecuencias (C)}: Magnitud del daño potencial más probable (desde 1 para lesiones menores hasta 100 para fatalidades múltiples).
+    \item \textbf{Exposición (E)}: Frecuencia de exposición del operario al factor de riesgo (desde 0.5 para exposición muy rara hasta 10 para continua).
+    \item \textbf{Probabilidad (P)}: Probabilidad de que se desencadene la secuencia del accidente durante el tiempo de exposición (desde 0.1 para virtualmente imposible hasta 10 para lo más probable).
+\end{itemize}
+
+El Grado de Peligrosidad se clasifica en los siguientes niveles de prioridad:
+\begin{itemize}
+    \item \textbf{GP > 400}: Riesgo Muy Alto. Exige la paralización inmediata de la tarea.
+    \item \textbf{200 < GP $\leq$ 400}: Riesgo Alto. Requiere corrección prioritaria y corrección urgente.
+    \item \textbf{85 < GP $\leq$ 200}: Riesgo Notable. Requiere control procedimental programado.
+    \item \textbf{18 < GP $\leq$ 85}: Riesgo Moderado. Requiere atención o vigilancia.
+    \item \textbf{GP $\leq$ 18}: Riesgo Bajo. Nivel tolerable.
+\end{itemize}
+
+A continuación se presenta la tabla correspondiente a la identificación y cuantificación del GP para las tareas críticas del dosificador y operador FFG:
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Evaluación del Grado de Peligrosidad (Método Fine)}
+    \begin{tabular}{lp{6cm}ccccr}
+        \toprule
+        \textbf{Riesgo Identificado} & \textbf{Causa y Contexto Operativo} & \textbf{C} & \textbf{E} & \textbf{P} & \textbf{GP} & \textbf{Nivel de Riesgo} \\
+        \midrule
+        \textbf{Ergonómico} & Levantamiento de baldes de 25 kg e inclinación al batir turriles de 200 kg & 15 & 10 & 6 & 900 & \textbf{Muy Alto} \\
+        \textbf{Físico (Ruido)} & Ruido continuo de motores FFG (JS, BK, T3, M5) en nave industrial & 15 & 10 & 6 & 900 & \textbf{Muy Alto} \\
+        \textbf{Químico} & Inhalación de aminas y salpicadura de tintas en dosificación ($pH \in [9,10]$) & 15 & 6 & 3 & 270 & \textbf{Alto} \\
+        \textbf{Mecánico} & Atrapamiento en rodillos FFG durante montajes o limpieza de cilindros & 25 & 3 & 3 & 225 & \textbf{Alto} \\
+        \textbf{Locativo} & Resbalones y caídas por derrames de tinta en cocina y pasillos & 5 & 10 & 3 & 150 & \textbf{Notable} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Para justificar objetivamente la inversión financiera en medidas de control, se calcula el índice de \textbf{Justificación (J)}:
+\begin{equation}
+    J = \frac{GP}{\text{Costo} \times \text{Factor de Corrección (DC)}}
+\end{equation}
+Donde el \textbf{Costo} se evalúa de 0.5 (despreciable) a 10 (muy alto, $>$\$50,000) y el \textbf{Factor de Corrección (DC)} refleja la efectividad del control, oscilando de 1 (elimina el 100\% del riesgo) a 6 (efectividad $<25\%$). Una inversión está plenamente justificada si $J > 10$.
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Justificación de Controles y Viabilidad Económica (Fórmula J)}
+    \begin{tabular}{lp{5cm}cccr}
+        \toprule
+        \textbf{Riesgo} & \textbf{Control Propuesto} & \textbf{GP} & \textbf{Costo} & \textbf{DC} & \textbf{Justificación (J)} \\
+        \midrule
+        \textbf{Ergonómico} & Plataformas neumáticas y agitador de tambores (mecanización) & 900 & 3 (\$5,000-\$10k) & 2 (75-99\%) & 150.0 \textbf{(Justificado)} \\
+        \textbf{Ruido} & EPP auditivo doble certificado e insonorización parcial & 900 & 2 (\$1,000-\$5k) & 2 (75-99\%) & 225.0 \textbf{(Justificado)} \\
+        \textbf{Químico} & Campana de extracción localizada en cocina + EPP químico (nitrilo) & 270 & 3 (\$5,000-\$10k) & 2 (75-99\%) & 45.0 \textbf{(Justificado)} \\
+        \textbf{Mecánico} & Procedimiento LOTO, barreras físicas de interbloqueo y paradas de emergencia & 225 & 4 (\$10,000-\$25k) & 1 (100\%) & 56.25 \textbf{(Justificado)} \\
+        \textbf{Locativo} & Revestimiento antideslizante industrial + kits de contención de derrames & 150 & 1 (\$100-\$1k) & 2 (75-99\%) & 75.0 \textbf{(Justificado)} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{4.1.2 Objetivos de SST}
+En línea con la matriz IPER y la cuantificación del método Fine, se determinan los siguientes objetivos específicos:
+\begin{itemize}
+    \item Difundir la Política de SST y los resultados de la evaluación Fine al 100\% del personal de la División de Corrugado.
+    \item Reducir en un 85\% la tasa de ausentismo asociado a trastornos musculoesqueléticos lumbares en la cocina de tintas en un plazo de 6 meses.
+    \item Implementar controles de ingeniería mecánicos (agitador y elevadores) en el 100\% de las estaciones de dosificación.
+    \item Mantener la exposición a ruido por debajo de 82 dBA en puestos de convertidoras FFG mediante el uso adecuado de protectores auditivos certificados.
+    \item Evaluar trimestralmente en el Comité Mixto el avance físico del plan de acción y verificar que el GP residual se reduzca al nivel Moderado o Bajo.
+\end{itemize}
+
+\subsubsection{4.1.3 Plan de Acción}
+El plan de acción resultante se estructura en tres fases temporales, priorizando las inversiones según el valor del índice J:
+\begin{itemize}
+    \item \textbf{Fase 1 -- Acciones Inmediatas (Semana 1-2)}: Adquisición de kits de derrames y aplicación de recubrimiento rugoso en pasillos ($J=75.0$). Distribución de protectores auditivos de copa con NRR de 27 dB ($J=225.0$). Elaboración del protocolo LOTO escrito para convertidoras JS, BK, T3 y M5.
+    \item \textbf{Fase 2 -- Estabilización Operativa (Semana 3-6)}: Instalación de las plataformas de drenaje por gravedad para baldes de tinta ($J=150.0$). Estandarización de fórmulas con catálogos GCMI para evitar batidos innecesarios. Capacitación formal de operarios en seguridad química y bloqueo de energías (LOTO).
+    \item \textbf{Fase 3 -- Inversiones de Ingeniería (Mes 2-4)}: Compra e instalación del agitador neumático de tambores para eliminar el batido manual con pala ($J=150.0$). Implementación física de enclavamientos con interruptores magnéticos de seguridad en las compuertas de las convertidoras ($J=56.25$).
+\end{itemize}
+
+\newpage% ==============================================================================
+% PUNTO 5
+% ==============================================================================
+\section{PUNTO 5: Estudios/Monitoreos de Higiene Generales y Específicos}
+\controlcambios
+\resumenrevision{}
+
+\subsection{5. Estudios/Monitoreos de Higiene}
+De acuerdo a las operaciones se establece un Plan de monitoreos según el Anexo 5A en cumplimiento a los procedimientos:
+\begin{itemize}
+    \item Los estudios son realizados bajo normas técnicas de seguridad aprobadas por la autoridad competente (como la NTS-001/17 para iluminación o NTS-002/17 para ruido).
+    \item Los estudios son realizados y certificados por profesionales con registro categoría ``A'' del Registro Nacional de Profesionales en Higiene y Seguridad.
+    \item Cada estudio cuenta con certificados de calibración vigentes de los equipos de medición (sonómetros, luxómetros).
+\end{itemize}
+
+\subsubsection{5.1 Plan de Monitoreo}
+El plan contempla mediciones semestrales en las convertidoras JS, BK, T3, Macarbox M5 y en la cocina de tintas de la planta.
+
+\subsubsection{5.1.1 Iluminación}
+El propósito de las mediciones de los niveles de iluminancia es verificar la idoneidad ergonómica visual de cada puesto de trabajo, reduciendo los riesgos de error operacional y de fatiga visual. De acuerdo con la norma boliviana **NTS-001/17**, los requerimientos mínimos de iluminación se establecen en función de la clase de tarea visual.
+
+\textit{Aspectos Clínicos y Fisiopatológicos}: Una iluminación deficiente en tareas de lectura o dosificación cromática obliga al ojo a realizar un sobreesfuerzo de acomodación mediante el músculo ciliar y genera fatiga visual o astenopia. Sus síntomas clínicos incluyen cefalea tensional, ardor ocular, epífora y sequedad corneal secundaria a una menor frecuencia de parpadeo. Por otra parte, la presencia de deslumbramiento (reflejos excesivos en las superficies metálicas de las prensas o recipientes de tinta) causa ceguera transitoria y fatiga de los fotorreceptores retinianos, incrementando significativamente la probabilidad de cometer errores operativos y sufrir atrapamientos.
+
+A continuación se presentan los límites normativos adoptados y las áreas bajo estudio de la planta:
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Niveles de Iluminancia Mínimos Exigidos (NTS-001/17)}
+    \begin{tabular}{llc}
+        \toprule
+        \textbf{Clase de Tarea Visual} & \textbf{Tareas Realizadas en Planta} & \textbf{Límite Mínimo (Lux)} \\
+        \midrule
+        \textbf{Visión ocasional} & Tránsito por pasillos y almacén general de turriles & 50 \\
+        \textbf{Requerimiento simple} & Alimentación de cartón y supervisión en FFG & 100 \\
+        \textbf{Detalles medianos} & Lectura de órdenes de producción y preparación de bases & 300 \\
+        \textbf{Alta precisión de color} & Control cromático en prensa, ajuste de Pantone y dosificación & 500 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Las mediciones del luxómetro en terreno se detallan en el ANEXO 5B, mostrando que las zonas de lectura y dosificación cuentan con luminarias LED que garantizan valores por encima de los 300 y 500 Lux exigidos, respectivamente.
+
+\subsubsection{5.1.2 Ventilación, Reposición de Aire}
+El objetivo de la ventilación es asegurar la dilución y renovación constante del volumen de aire, eliminando la acumulación de dióxido de carbono ($CO_2$) y compuestos orgánicos volátiles (COVs) desprendidos de los aditivos acrílicos.
+
+\textit{Fisiopatología del Aire Confinado}: La acumulación de contaminantes en ambientes mal ventilados desencadena el síndrome del edificio enfermo. Clínicamente, el incremento en la concentración de $CO_2$ por encima de 1000 ppm provoca somnolencia, disminución de la agudeza mental, cefalea difusa y fatiga física prematura. Fisiológicamente, esto se debe a un leve aumento de la presión parcial de $CO_2$ en sangre arterial, induciendo una acidosis respiratoria compensada. 
+
+Para neutralizar estos efectos, se adoptan los parámetros de renovación mínima establecidos en el Real Decreto 486/1997 de España y la guía ASHRAE 62.1:
+\begin{itemize}
+    \item \textbf{30 $m^3$/hora por trabajador} para tareas sedentarias o administrativas en oficinas climatizadas.
+    \item \textbf{50 $m^3$/hora por trabajador} para áreas con presencia de fuentes contaminantes suaves o vapores químicos (como la cocina de tintas).
+\end{itemize}
+
+Los reportes de velocidad del aire y tasas de renovación medidos con anemómetro de hilo caliente se adjuntan en el ANEXO 5B, demostrando cumplimiento gracias al sistema de extracción forzada y campana localizada en la cocina de preparación de tintas.
+
+\subsubsection{5.1.3 Medición de Gases y Concentración de Oxígeno}
+El monitoreo atmosférico periódico es mandatorio en áreas semicerradas o propensas a la acumulación de vapores irritantes o asfixiantes. Los límites de control se adoptan de la regulación estadounidense **OSHA 29 CFR 1910.146** (Apéndice D, Subparte 146).
+
+\textit{Pathophysiology and Toxicity of Target Gases}:
+\begin{itemize}
+    \item \textbf{Monóxido de Carbono (CO)}: Su toxicidad radica en su afinidad extremadamente alta por la hemoglobina, que es de **200 a 250 veces mayor** que la del oxígeno. Al unirse, forma carboxihemoglobina (COHb), desplazando la curva de disociación de la oxihemoglobina hacia la izquierda y bloqueando la entrega de oxígeno a los tejidos periféricos. Fisiológicamente, esto produce hipoxia histotóxica sistémica, manifestándose clínicamente con cefalea pulsátil, mareos, confusión y, en pacientes predispuestos, desencadenando angina de pecho o infarto agudo de miocardio por isquemia miocárdica aguda.
+    \item \textbf{Ácido Sulfhídrico ($H_2S$)}: Actúa a nivel mitocondrial bloqueando la cadena de transporte de electrones al inhibir la enzima citocromo c oxidasa. Esto causa una parálisis de la respiración celular similar a la provocada por el cianuro, afectando de inmediato al sistema nervioso central y al miocardio.
+    \item \textbf{Deficiencia de Oxígeno ($O_2$)}: Concentraciones de $O_2$ por debajo del 19.5\% causan anoxia tisular rápida. Fisiológicamente se inicia taquicardia y taquipnea compensatorias para intentar sostener el gasto cardíaco, evolucionando a descoordinación motora, pérdida del conocimiento y muerte en pocos minutos si el nivel baja del 12\%.
+\end{itemize}
+
+A continuación se detallan los valores máximos y rangos seguros que deben ser monitorizados continuamente:
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Rangos de Gases Seguros en Atmósferas de Trabajo (OSHA)}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Gas / Parámetro} & \textbf{Límite Diario TWA (8 Horas)} & \textbf{Límite Techo Puntual} \\
+        \midrule
+        \textbf{Monóxido de Carbono (CO)} & 35 ppm & Menor a 35 ppm \\
+        \textbf{Ácido Sulfhídrico ($H_2S$)} & 10 ppm & Menor a 10 ppm \\
+        \textbf{Oxígeno ($O_2$)} & No aplica & Entre 19.5\% y 23.5\% \\
+        \textbf{Límite Inferior de Explosividad (LEL)} & No aplica & Menor a 10\% del LEL \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{5.1.4 Evaluación de Material Particulado}
+El polvillo de cartón generado durante el corte, ranurado y expulsión de virutas en las convertidoras FFG representa el principal aerosol suspendido en planta. La metodología se basa en la norma boliviana **NB 62014** para muestreo activo de partículas.
+
+\textit{Diferencia Fisiológica entre Fracciones de Polvo (PM10 vs PM2.5)}:
+\begin{itemize}
+    \item \textbf{PM10 (Fracción Torácica)}: Comprende partículas con un diámetro aerodinámico menor a 10 micras. Quedan atrapadas principalmente en el tracto respiratorio superior y los bronquios principales mediante impacto inercial y sedimentación física. Clínicamente causan irritación mecánica de la mucosa respiratoria superior, rinitis crónica, sinusitis y bronquitis obstructiva simple.
+    \item \textbf{PM2.5 / Polvo Respirable}: Partículas menores a 2.5 micras. Tienen la capacidad de evadir las barreras ciliadas y penetrar profundamente hasta los alvéolos pulmonares. Fisiológicamente, al depositarse en el alvéolo, son fagocitadas por los macrófagos alveolares, desencadenando una respuesta inflamatoria crónica local mediante la liberación de citoquinas proinflamatorias (como el factor de necrosis tumoral TNF-$\alpha$ e interleucina 1-$\beta$). La exposición prolongada a esta fracción respirable destruye el tabique alveolar, induce fibrosis intersticial progresiva y acelera el deterioro del volumen espiratorio forzado en el primer segundo ($FEV_1$), exacerbando patologías previas como asma y enfermedad pulmonar obstructiva crónica (EPOC).
+\end{itemize}
+
+El límite de exposición de la ACGIH para polvo inerte respirable es de 3 mg/$m^3$ y para polvo inhalable es de 10 mg/$m^3$. Los resultados de monitoreo gravimétrico en convertidoras se registran en el ANEXO 5B.
+
+\subsubsection{5.1.5 Evaluación de Ruido Ocupacional}
+Las convertidoras flexográficas slotter JS, BK, T3 y M5 operan con altos niveles de fricción mecánica y soplado neumático, lo que genera ruido continuo que suele superar el umbral de seguridad de 85 dBA.
+
+\textit{Fisiopatología de la Hipoacusia Inducida por Ruido (HIR)}: La exposición prolongada a niveles de presión sonora elevados ($>85$ dBA) provoca microtraumatismo físico constante sobre el oído interno. Específicamente, induce fatiga metabólica y mecánica en las células ciliadas externas del órgano de Corti en la cóclea. A nivel celular, la sobreestimulación auditiva causa un aumento descontrolado de calcio intracelular y la consecuente formación masiva de especies reactivas de oxígeno (ROS), lo que desencadena la degeneración de las uniones sinápticas con las fibras nerviosas auditivas y activa las vías de apoptosis (muerte celular programada). Debido a que las células ciliadas cocleares humanas no tienen capacidad de regenerarse, el daño es irreversible y genera una hipoacusia neurosensorial bilateral y simétrica, que clínicamente inicia con la pérdida de audición en las frecuencias agudas (con un característico bache o escotoma en los 4,000 Hz en la audiometría tonal).
+
+De acuerdo con la norma de ruido **NTS-002/17** del Ministerio de Trabajo boliviano y los criterios de la ACGIH, los límites máximos de exposición permisible sin el uso de protección auditiva se calculan bajo una tasa de intercambio de 3 dB:
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Tiempos Máximos de Exposición a Ruido (NTS-002/17)}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Nivel de Ruido Continuo Equivalente ($L_{eq}$)} & \textbf{Tiempo de Exposición Máximo Permisible} \\
+        \midrule
+        85 dBA & 8 Horas \\
+        88 dBA & 4 Horas \\
+        91 dBA & 2 Horas \\
+        94 dBA & 1 Hora \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Dado que las mediciones dosimétricas en convertidoras reportaron niveles de $L_{eq} \in [88.5, 93.0]$ dBA, el ANEXO 5B establece que el personal debe utilizar obligatoriamente protectores auditivos de tipo copa o inserción con una atenuación certificada NRR mínima de 25 dB para reducir la dosis efectiva a menos de 80 dBA.
+
+\subsubsection{5.1.6 Otros Monitoreos}
+Se contemplan estudios de carga térmica en la vecindad de la máquina corrugadora (por calor radiante y humedad de vapor), y análisis de calidad microbiológica y fisicoquímica del agua potable suministrada, asegurando el cumplimiento de la norma NB 512 para descartar contaminantes coliformes.
+
+\subsubsection{5.1.7 Carga de Fuego}
+El almacén de bobinas de papel Kraft y la acumulación de planchas de cartón corrugado generan una alta densidad de carga térmica. El cálculo se realiza mediante el método de Carga de Fuego de acuerdo con la norma NB 58002, determinando la energía total liberada por unidad de superficie mediante la ecuación:
+\begin{equation}
+    Q_f = \frac{\sum (M_i \times H_i)}{A}
+\end{equation}
+Donde $M_i$ es la masa de cada combustible celulósico, $H_i$ su respectivo poder calorífico y $A$ el área del almacén. Los resultados (ANEXO 5B) demuestran una carga de fuego equivalente a madera superior a 500 MJ/$m^2$. Fisiopatológicamente, los incendios de celulosa producen grandes volúmenes de humo asfixiante rico en monóxido de carbono e hidrocarburos de combustión incompleta. La inhalación aguda causa quemaduras térmicas directas de la vía aérea e hipoxia sistémica por inhalación de humo, lo que requiere que las brigadas estén formadas en protocolos de reanimación y administración inmediata de oxígeno normobárico al 100\%.
+
+\subsubsection{5.1.8 Ergonomía}
+El puesto de operario de dosificación de tintas y manipulación de baldes presenta riesgos críticos de trastornos musculoesqueléticos (TME) debido al sobreesfuerzo lumbar continuo y posturas forzadas. La evaluación se realiza bajo el marco de la norma **NTS-015/23** y la ecuación de levantamiento de la NIOSH.
+
+\textit{Biomecánica de la Columna y Carga Lumbar}: Al levantar manualmente baldes de tinta de 25 kg desde el suelo sin flexionar las rodillas, el centro de gravedad del operario se desplaza hacia adelante. Esto obliga a los músculos erectores de la espina a ejercer una fuerza de tracción masiva para contrarrestar la carga. Mecánicamente, se genera una fuerza de compresión y cizallamiento sobre el disco intervertebral **L5-S1 que supera los 3,400 Newton (N)**, límite biomecánico de seguridad establecido por la NIOSH. Clínicamente, las fuerzas repetitivas por encima de este umbral causan microfracturas en los platillos vertebrales terminales, deshidratación del núcleo pulposo y protrusión del anillo fibroso. Esto evoluciona a hernias de disco lumbares con compresión radicular del nervio ciático (lumbociatalgia) y espasmos musculares reflejos incapacitantes.
+
+\textit{Validación de Tiempos y Variabilidad de la Tarea}: La evaluación del puesto de dosificador determinó que el ciclo básico normal de cambio de turriles y dosificación tiene un tiempo normal de $TN_{base} = 847$ segundos (14.1 min). Sin embargo, anomalías físicas críticas (viscosidad excesiva de tinta, batido manual con pala) agregan en promedio $T_{anom} = 1,800$ segundos (30 min) con una probabilidad de ocurrencia del $P_{visc} = 0.35$.
+El tiempo esperado considerando la variabilidad es:
+\begin{equation}
+    E[T] = TN_{base} + (P_{visc} \times T_{anom}) = 847 + (0.35 \times 1,800) = 1,477 \text{ segundos}
+\end{equation}
+Aplicando los suplementos por fatiga física y esfuerzo estipulados por la OIT (38\% para levantamiento de cargas pesadas en posturas forzadas), el Tiempo Estándar de la operación de abastecimiento y dosificación es:
+\begin{equation}
+    TS = 1,477 \times 1.38 \approx 2,038 \text{ segundos } (\approx 34.0 \text{ minutos})
+\end{equation}
+El coeficiente de variación del 49.4\% confirma que la tarea presenta una alta inestabilidad física e introduce un riesgo ergonómico crítico que justifica plenamente la mecanización del batido mediante agitadores neumáticos y la elevación de turriles con elevadores mecánicos.
+
+\newpage
+% ==============================================================================
+% PUNTO 6
+% ==============================================================================
+\section{PUNTO 6: Actividades de Alto Riesgo}
+\controlcambios
+\resumenrevision{1}
+\subsection{6. Descripción de Actividades de Alto Riesgo}
+Las tareas operativas diarias en las oficinas y pasillos de la cocina de tintas se consideran de bajo riesgo y no requieren permisos especiales. Sin embargo, para la ejecución de intervenciones de mantenimiento correctivo, calibraciones y ajustes de maquinaria en la División de Corrugado, se identifican actividades de alto riesgo que demandan la emisión obligatoria de un **Permiso Especial de Trabajo (PET)** y la aplicación de estrictos controles de ingeniería:
+
+\begin{itemize}
+    \item \textbf{Mantenimiento y Ajuste Mecánico de Convertidoras FFG (JS, BK, T3, M5)}: 
+    \textit{Especificación de Control (Sistema LOTO)}: Durante el montaje de troqueles, clichés de clichés y la limpieza manual de cilindros de impresión, los operarios y mecánicos están expuestos al riesgo de atrapamiento y aplastamiento por la rotación accidental de los rodillos. En estricto cumplimiento de la norma **OSHA 29 CFR 1910.147** (Control de Energía Peligrosa), se implementa un procedimiento de bloqueo y etiquetado (LOTO) estructurado en 6 etapas secuenciales:
+    \begin{enumerate}
+        \item \textbf{Preparación}: Identificación de todos los tipos de energía (eléctrica trifásica de 380V y neumática de 6 bar).
+        \item \textbf{Apagado}: Detención controlada de la prensa FFG mediante el panel operativo.
+        \item \textbf{Aislamiento}: Desconexión física del disyuntor eléctrico principal y cierre de la válvula neumática de alimentación.
+        \item \textbf{Bloqueo e Identificación}: Colocación de candados personales y tarjetas de advertencia (\textit{tags}) en los dispositivos de aislamiento.
+        \item \textbf{Disipación de Energía Almacenada}: Purga de la presión neumática remanente en las mangueras de las bombas de diafragma y confirmación de descarga de condensadores eléctricos.
+        \item \textbf{Verificación de Aislamiento}: Intento de arranque local para confirmar el estado de energía cero antes de ingresar a la zona de atrapamiento.
+    \end{enumerate}
+    \textit{Prevención Clínico-Médica}: Fisiológicamente, este procedimiento previene traumatismos de alta energía, incluyendo aplastamiento de extremidades superiores, fracturas conminutas de metacarpo y falanges, avulsión de tejidos blandos y amputación traumática de dedos por fuerzas de cizalla neumáticas y mecánicas directas.
+    
+    \item \textbf{Mantenimiento Eléctrico de la Dosificadora DOS-01 y Prensas Flexográficas}:
+    \textit{Especificación de Control (Norma NFPA 70E)}: Las intervenciones en tableros eléctricos de fuerza trifásica para la solución de fallas en servomotores exponen al personal al riesgo de choque eléctrico y arco eléctrico (\textit{Arc Flash}). De acuerdo con la **NFPA 70E**, se delimitan las fronteras de aproximación limitada y restringida, obligando al uso de herramientas dieléctricas aisladas (hasta 1,000V) y EPP específico con clasificación de protección térmica al arco (calzado dieléctrico, guantes de cuero sobre guantes dieléctricos clase 00 y careta de protección facial contra arco).
+    \textit{Fisiopatología del Choque Eléctrico}: Clínicamente, el paso de una corriente alterna de 50 Hz a través del tórax humano por encima de 50 mA interrumpe la repolarización cardíaca durante la fase vulnerable del ciclo, desencadenando **fibrilación ventricular irreversible**, paro cardiorrespiratorio y muerte súbita. Asimismo, la alta energía del arco eléctrico genera temperaturas superiores a los $10,000^{\circ}$C, provocando quemaduras térmicas de tercer grado por radiación, inhalación de vapores metálicos tóxicos e hipoacusia traumática por la onda expansiva acústica.
+\end{itemize}
+
+El procedimiento de permisos de trabajo (PET) del ANEXO 6A describe los flujos de autorización, las firmas del emisor y ejecutor, y la lista de verificación previa que debe completarse obligatoriamente antes de remover cualquier resguardo físico de las prensas.
+\newpage
+% ==============================================================================
+% PUNTO 7
+% ==============================================================================
+\section{PUNTO 7: Inducción, Capacitación, Concientización y Comunicación}
+\controlcambios
+\resumenrevision{1}
+\subsection{1. Programa de Capacitaciones}
+Se establece y mantiene un programa anual de capacitación, formación y entrenamiento continuo para el personal operativo, administrativo y de supervisión de la División de Corrugado. El objetivo principal es dotar al trabajador de las competencias técnicas y de autogestión de riesgos necesarias para controlar los peligros inherentes al proceso de flexografía, reduciendo la probabilidad de accidentes.
+
+\textit{Enfoque de Desempeño Humano (HOP) y Seguridad Conductual}: La formación se diseña bajo principios de \textbf{Seguridad Basada en el Comportamiento (SBC)}, enfocándose en reforzar las conductas seguras mediante la retroalimentación positiva y la observación activa. Fisiológicamente, el entrenamiento regular disminuye los errores por fatiga cognitiva o sobrecarga sensorial, al automatizar los esquemas mentales de trabajo seguro. Reconociendo que el error humano es normal, las capacitaciones no se limitan a exigir obediencia ciega a los manuales, sino que buscan alinear de forma adaptativa el \textbf{Trabajo-Como-Se-Imagina (WAI)} con el \textbf{Trabajo-Como-Se-Hace (WAD)}, permitiendo que los operarios identifiquen de manera temprana fallas latentes en los equipos y tomen decisiones seguras en campo.
+
+\subsubsection{1.1 Desarrollo}
+
+\paragraph{1.1.1 Capacitaciones e inducción a personal nuevo}
+Todo personal que ingresa al área de corrugado, incluyendo trabajadores tercerizados y personal en prácticas, debe recibir una inducción teórico-práctica obligatoria antes de iniciar cualquier labor (con un plazo máximo de 5 días hábiles tras el ingreso). La inducción abarca como mínimo:
+\begin{itemize}
+    \item Peligros específicos de atrapamiento mecánico en rodillos alimentadores, cilindros porta-clichés e impresoras de las convertidoras JS, BK, T3 y M5.
+    \item Política de SST de la organización y el marco legal del Decreto Ley Nº 16998.
+    \item Uso correcto, almacenamiento y límites de atenuación de los equipos de protección personal (EPP).
+    \item Manejo seguro de sustancias químicas: lectura e interpretación de las Fichas de Datos de Seguridad (FDS/MSDS) de tintas flexográficas y aminas reguladoras de pH, identificando los peligros de irritación corneal y dermatitis.
+    \item Plan de respuesta a emergencias, rutas de escape y uso de lavaojos de emergencia.
+\end{itemize}
+
+\paragraph{1.1.2 Capacitación de conciencia de seguridad}
+Charlas diarias de 5 minutos al inicio del turno a cargo de los supervisores de línea. Estas charlas abordan temas de concientización inmediata, como higiene postural (técnicas de levantamiento NIOSH para baldes de tinta), reporte preventivo de condiciones inseguras (alertas de seguridad) y gestión de la fatiga muscular en jornadas calurosas.
+
+\paragraph{1.1.3 Capacitación de seguridad especializada}
+Talleres trimestrales de entrenamiento práctico para tareas de alto riesgo:
+\begin{itemize}
+    \item Entrenamiento en aislamiento de energías peligrosas y aplicación física de candados y etiquetas del sistema LOTO.
+    \item Simulacros de evacuación anuales por amagos de incendio en almacenes de Kraft y derrames químicos en cocina.
+    \item Primeros auxilios básicos y reanimación cardiopulmonar (RCP) para brigadistas.
+\end{itemize}
+Todas las actividades de capacitación son documentadas mediante registros de asistencia físicos y digitales, con la firma de los participantes y evaluaciones de eficacia de acuerdo con la norma NTS-009/23.
+\newpage
+% ==============================================================================
+% PUNTO 8
+% ==============================================================================
+\section{PUNTO 8: Aspectos Generales de Dotación de Ropa de Trabajo y EPPs}
+\controlcambios
+\resumenrevision{1}
+\subsection{8. Aspectos Generales de Dotación de Ropa de Trabajo y EPPs}
+
+\subsubsection{8.1 Riesgos de Seguridad Laboral}
+La dotación de ropa de trabajo y equipos de protección personal (EPP) en EMPACAR S.A. se rige bajo la Resolución Ministerial 527/09 (Dotación de Ropa de Trabajo y EPP) y las directrices técnicas del anexo 8A, asegurando la selección técnica y la certificación de calidad de las barreras físicas.
+
+\begin{itemize}
+    \item \textbf{Riesgos Químicos y Biológicos}: 
+    \begin{itemize}
+        \item \textbf{Protección Dérmica (Guantes de Nitrilo de Caña Larga - Norma EN ISO 374-1)}: El nitrilo posee una alta resistencia a la degradación química por solventes polares, resinas acrílicas y aminas estabilizadoras. \textit{Racional Médico}: A diferencia del látex, que posee baja resistencia química y es altamente sensibilizante (pudiendo desencadenar reacciones de hipersensibilidad tipo I mediadas por IgE), el nitrilo actúa como una barrera semipermeable estable. Esto previene la absorción percutánea de solventes y evita la dermatitis alérgica o irritativa por contacto que causa xerosis, fisuras epidérmicas e infecciones bacterianas secundarias.
+        \item \textbf{Protección Ocular (Gafas de Seguridad Antiempañantes - Norma ANSI Z87.1)}: Lentes con protección lateral integral resistentes a impactos de alta velocidad y salpicaduras de líquidos corrosivos. \textit{Racional Médico}: El contacto de tintas flexográficas o aditivos alcalinos ($pH \geq 9.5$) con el epitelio corneal puede provocar una quemadura química por álcali. Los álcalis causan una necrosis por licuefacción que penetra rápidamente el estroma corneal, destruyendo las uniones celulares y pudiendo provocar opacidad corneal permanente y ceguera. Las gafas certificadas evitan este tipo de daño irreversible.
+        \item \textbf{Protección Respiratoria (Respirador de Media Cara con Filtros Químicos - Norma NIOSH)}: Mascarillas equipadas con cartuchos aprobados por NIOSH para vapores orgánicos y gases ácidos/aminas. \textit{Racional Médico}: Previene la inhalación de vapores alcalinos volátiles, evitando la irritación química aguda de la mucosa laringotraqueal y reduciendo la probabilidad de broncoespasmo reflejo y asma ocupacional.
+    \end{itemize}
+    
+    \item \textbf{Riesgos Mecánicos y Locativos}:
+    \begin{itemize}
+        \item \textbf{Calzado de Seguridad Dieléctrico con Puntera (Norma ASTM F2413)}: Calzado resistente a impactos de 101.7 Julios y compresión de 11.121 N en puntera, con suela antideslizante y resistencia dieléctrica. \textit{Racional Médico}: Protege contra fracturas por caída de baldes de tinta o herramientas, descargas eléctricas incidentales y previene resbalones en zonas húmedas de lavado que causan esguinces o fracturas de miembro inferior.
+        \item \textbf{Ropa de Trabajo de Alta Resistencia (Jean de Algodón - Norma NTS-014/23)}: Pantalón y camisa de mezclilla de algodón de alto gramaje para proteger la piel frente a abrasiones mecánicas suaves y contacto químico superficial.
+    \end{itemize}
+    
+    \item \textbf{Riesgo Físico (Ruido)}:
+    \begin{itemize}
+        \item \textbf{Protectores Auditivos de Inserción y Copa (Norma EN 352-1 y EN 352-2)}: Con valores de reducción de ruido (NRR) de 25 a 30 dB. \textit{Racional Médico}: En zonas de convertidoras con niveles de ruido $>90$ dBA, el uso de doble protección auditiva (tapones de silicona + orejeras de copa) atenúa el sonido no solo por el canal auditivo externo, sino que también minimiza la transmisión de energía acústica por conducción ósea a través del cráneo, reduciendo significativamente la fatiga de las células ciliadas.
+    \end{itemize}
+\end{itemize}
+
+La entrega formal y el registro se realizan bajo el ANEXO 8B, donde el trabajador firma una constancia de capacitación en el uso, limpieza y conservación diaria de su equipo.
+\newpage
+% ==============================================================================
+% PUNTO 9
+% ==============================================================================
+\section{PUNTO 9: Inspecciones Internas de SST}
+\controlcambios
+\resumenrevision{1}
+\subsection{1. Inspecciones Internas de SST}
+Se establece y mantiene un programa estructurado de inspecciones internas de seguridad, coordinado por el área de SMA y en cumplimiento con la norma boliviana **NTS-009/23**, con el fin de auditar las condiciones físicas de la planta corrugadora y los comportamientos de la fuerza laboral.
+
+\textit{Integración de los Paradigmas Safety-I y Safety-II}: Las inspecciones se ejecutan bajo un enfoque dual:
+\begin{itemize}
+    \item \textbf{Enfoque Safety-I (Detección de Desvíos)}: Se identifican y registran activamente condiciones subestándar (como fugas de aire, mangueras de tinta deterioradas, derrames o fallas de puesta a tierra) y actos inseguros (no usar protección auditiva o guantes de nitrilo).
+    \item \textbf{Enfoque Safety-II (Observación de Adaptaciones Exitosas)}: Se examina el desempeño normal de la operación para entender por qué la gran mayoría de las tareas se completan sin accidentes. El inspector observa de qué manera los operarios adaptan sus métodos frente a la viscosidad variable de la tinta, cómo cooperan para trasladar baldes y qué estrategias utilizan para sortear micro-disruptivos sin comprometer su seguridad. Estas adaptaciones positivas son documentadas para estandarizarse y mejorar el diseño del proceso.
+\end{itemize}
+
+El programa anual de inspecciones comprende tres niveles operativos:
+\begin{enumerate}
+    \item \textbf{Diarias (Inspecciones de Línea)}: Ejecutadas por el supervisor del área y los operarios al inicio de la jornada mediante listas de verificación pre-operativas (bloqueo neumático, checklists de convertidoras y estado de orden y limpieza de la cocina de tintas).
+    \item \textbf{Semanales (Recorridos del Comité Mixto)}: Caminatas conjuntas de los representantes de los trabajadores y del empleador para inspeccionar el estado de los sistemas de parada de emergencia, almacenamiento de cilindros y condiciones ambientales.
+    \item \textbf{Mensuales (Inspecciones Especializadas de SMA)}: Auditorías técnicas de los equipos contra incendios (extintores NFPA 10), red de hidrantes, inventarios de LOTO (candados, tarjetas), y estado del sistema de extracción de aire en cocina de tintas.
+\end{enumerate}
+
+\textit{Estructura del Informe Técnico}: Ante cualquier hallazgo crítico, se emite un informe técnico de manera inmediata. El contenido mínimo auditable incluye: fecha y hora de la inspección, responsables de la auditoría, descripción del desvío u oportunidad de mejora, registro fotográfico del hallazgo, clasificación del riesgo (según William Fine), plan de acción correctivo/preventivo asignando responsables y plazos de ejecución, y firmas de aprobación. El seguimiento y control de efectividad de las acciones propuestas se revisa mensualmente en las reuniones ordinarias del Comité Mixto.
+
+El procedimiento de gestión de incidentes del ANEXO 9A y los formatos de inspección mensual de montacargas y vehículos se encuentran en el ANEXO 9B.
+\newpage
+% ==============================================================================
+% PUNTO 10
+% ==============================================================================
+\section{PUNTO 10: Plan de Emergencia}
+\controlcambios
+\resumenrevision{1}
+\subsection{1. Plan de Emergencia}
+El Plan de Respuesta a Emergencias (ERP) de la División de Corrugado (ANEXO 10A) establece la estructura organizativa, los flujos de comunicación y los protocolos clínicos para responder con rapidez y seguridad ante incidentes mayores (incendios estructurales, derrames químicos masivos o lesiones graves).
+
+\begin{itemize}
+    \item \textbf{Estructura de la Brigada de Emergencia}: Conformada por tres brigadas especializadas entrenadas de forma continua:
+    \begin{enumerate}
+        \item \textbf{Brigada de Combate de Incendios}: Encargada del despliegue preventivo de extintores y red de hidrantes para contener amagos de fuego en bobinas de Kraft.
+        \item \textbf{Brigada de Evacuación}: Responsable de guiar al personal hacia los puntos de encuentro seguros.
+        \item \textbf{Brigada de Primeros Auxilios}: Personal capacitado en soporte básico de vida y atención primaria de trauma.
+    \end{enumerate}
+
+    \item \textbf{Protocolo de Triage y Clasificación de Víctimas (Método START)}:
+    En caso de un incidente con múltiples víctimas (como una explosión neumática o derrame masivo con atrapamientos), la brigada médica aplica el método **START (Simple Triage and Rapid Treatment)**. Este protocolo clasifica a los pacientes en 4 categorías según su prioridad fisiológica (respiración, perfusión y estado neurológico):
+    \begin{itemize}
+        \item \textbf{Rojo (Inmediato)}: Pacientes con compromiso ventilatorio ($>30$ respiraciones por minuto), llenado capilar enlentecido ($>2$ segundos) o incapacidad para seguir órdenes sencillas. Requieren estabilización médica inmediata.
+        \item \textbf{Amarillo (Diferido)}: Pacientes estables pero con lesiones que limitan la movilidad (fracturas cerradas, quemaduras extensas sin compromiso de vía aérea).
+        \item \textbf{Verde (Leve)}: Lesionados ambulatorios (caminando) con heridas superficiales.
+        \item \textbf{Negro (Fallecido)}: Pacientes sin respiración espontánea tras abrir la vía aérea.
+    \end{itemize}
+
+    \item \textbf{Protocolo Clínico de Manejo de Quemaduras Químicas y Térmicas}:
+    \begin{itemize}
+        \item \textbf{Quemaduras Térmicas (Fuego en almacén)}: Irrigación inmediata de la zona afectada con agua limpia a temperatura ambiente por un mínimo de 15 minutos para detener la propagación térmica cutánea. \textit{Acción Médica}: Se prohíbe el uso de ungüentos caseros o hielo directo (que causa vasoconstricción y empeora la isquemia). Se evalúa la extensión mediante la Regla de los Nueve de Wallace y se cubre la lesión con apósitos estériles húmedos para evitar la pérdida de calor y la hipotermia.
+        \item \textbf{Salpicaduras Químicas en Ojos (Aminas y Detergentes)}: Irrigación copiosa e inmediata en las estaciones de lavaojos con agua durante un mínimo de **15 a 20 minutos ininterrumpidos**, forzando la apertura de los párpados. \textit{Acción Médica}: Evita la necrosis licuefactiva corneal por álcalis. Se prohíbe el uso de soluciones neutralizantes ácidas debido al calor de reacción exotérmica que agravaría el daño ocular.
+    \end{itemize}
+
+    \item \textbf{Soporte Cardiovascular y Uso de DEA}:
+    Para casos de parada cardíaca repentina (choque eléctrico trifásico), se cuenta con un desfibrilador externo automático (DEA) estratégicamente ubicado en el pasillo principal. La brigada está entrenada bajo las guías de la American Heart Association (AHA) en reanimación cardiopulmonar (RCP) de alta calidad (100-120 compresiones por minuto a una profundidad de 5-6 cm).
+
+    \item \textbf{Flujograma de Evacuación y MEDEVAC}:
+    En caso de requerirse una evacuación médica (MEDEVAC), se establece una ruta terrestre preestablecida hacia centros hospitalarios de tercer nivel en Santa Cruz de la Sierra (como la Clínica Foianini o el Hospital Japonés) con los cuales se mantiene convenio activo.
+\end{itemize}
+
+En el ANEXO 10B se detalla el manual de primeros auxilios y las constancias de inspección periódica de los botiquines de planta.
+\newpage
+% ==============================================================================
+% PUNTO 11
+% ==============================================================================
+\section{PUNTO 11: Investigación y gestión de Accidentes de Trabajo y Acciones Correctivas}
+\controlcambios
+\resumenrevision{1}
+
+\subsection{1. Investigación y gestión de Accidentes de Trabajo y Acciones Correctivas}
+\subsubsection{1.1 Procedimiento de Investigación}
+Ante la ocurrencia de un accidente de trabajo o incidente de alto potencial en la División de Corrugado, se activa de forma obligatoria el procedimiento formal de investigación de incidentes (ANEXO 11A) en un plazo no mayor a 24 horas. El equipo de investigación (integrado por el Técnico de SST, el supervisor del área afectada y representantes del Comité Mixto) se constituye en el lugar del evento para asegurar las evidencias físicas, tomar fotografías generales y de detalle del estado de la máquina, y entrevistar por separado a los testigos presenciales. El objetivo principal es reconstruir la secuencia de eventos que condujo al suceso, sin buscar culpabilidades, sino fallas latentes en el sistema para evitar su repetición.
+
+\subsubsection{1.2 Determinación de la Causa}
+Para identificar los factores causales que desencadenaron el accidente, el equipo investigador aplica de manera sistemática metodologías de análisis de causa raíz:
+\begin{itemize}
+    \item \textbf{Técnica de los 5 Porqués}: Aplicada principalmente para identificar fallas mecánicas de bombas, desvíos en la viscosidad de las tintas o fallas procedimentales (ej. ¿Por qué se derramó la tinta? Porque la manguera se soltó. ¿Por qué se soltó? Porque el acople rápido estaba desgastado, etc.).
+    \item \textbf{Diagrama de Ishikawa (Espina de Pescado)}: Para clasificar y correlacionar las causas en las categorías clásicas: Método, Mano de Obra (desempeño humano, fatiga), Materiales (viscosidad de tintas), Maquinaria (convertidoras JS, BK, T3, M5), Medición y Medio Ambiente.
+    \item \textbf{Técnica de Causa-Efecto}: Para mapear la secuencia lineal y no lineal del evento.
+\end{itemize}
+El análisis diferencia entre las causas inmediatas (actos y condiciones subestándar) y las causas básicas (factores personales y factores del trabajo/diseño organizacional).
+
+\subsubsection{1.3 Elaboración del Informe}
+El equipo investigador emite un Informe de Investigación de Accidente cuyo contenido mínimo consta de: datos del accidentado, descripción detallada del evento, testimonios, análisis de causas (Ishikawa/5 Porqués), plan de acciones correctivas y preventivas con responsables y fechas límite de ejecución, y firmas de aprobación de los miembros del Comité Mixto y del Representante Legal. De acuerdo con la norma NTS-009/23, los controles definidos en el informe deben ser incorporados de manera inmediata en la actualización de la matriz IPER.
+
+\subsubsection{1.4 Estadísticas de Accidentabilidad}
+Para evaluar el desempeño del sistema de gestión y el nivel de siniestralidad de la planta, se calculan mensualmente los índices de accidentabilidad bajo las siguientes fórmulas matemáticas normalizadas:
+\begin{enumerate}
+    \item \textbf{Índice de Frecuencia (IF)}: Representa el número de accidentes con baja médica ocurridos por cada millón de horas hombre expuestas.
+    \begin{equation}
+        IF = \frac{\text{Número de accidentes con baja} \times 1,000,000}{\text{Horas Hombre Trabajadas (HHT)}}
+    \end{equation}
+    \item \textbf{Índice de Gravedad (IG)}: Representa el número de días de baja o perdidos a causa de los accidentes por cada mil horas hombre expuestas.
+    \begin{equation}
+        IG = \frac{\text{Días de baja} \times 1,000}{\text{Horas Hombre Trabajadas (HHT)}}
+    \end{equation}
+    \item \textbf{Índice de Incidencia (II)}: Expresa la cantidad de accidentes con baja ocurridos por cada mil trabajadores expuestos.
+    \begin{equation}
+        II = \frac{\text{Número de accidentes con baja} \times 1,000}{\text{Número promedio de trabajadores}}
+    \end{equation}
+\end{enumerate}
+
+A continuación, se presentan las tablas de registro de estadísticas e indicadores de siniestralidad para la gestión 2026. Se modela un escenario ilustrativo con un personal promedio de 15 trabajadores en la División de Corrugado, donde en el mes de septiembre de 2026 se registró 1 accidente leve con baja (laceración distal en mano derecha durante ajuste de FFG) que resultó en 5 días de baja médica, sirviendo para demostrar la aplicación práctica de los cálculos:
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{Estadísticas de Accidentabilidad (Gestión 2026)}
+    \begin{tabular}{lccccccccc}
+        \toprule
+        \textbf{Mes} & 
+        \shortstack{\textbf{Días} \\ \textbf{Trab.}} & 
+        \shortstack{\textbf{Prom.} \\ \textbf{Trab.}} & 
+        \shortstack{\textbf{Horas} \\ \textbf{Diarias}} & 
+        \shortstack{\textbf{Horas} \\ \textbf{Hombre}} & 
+        \shortstack{\textbf{Accid.} \\ \textbf{Totales}} & 
+        \shortstack{\textbf{Accid.} \\ \textbf{Sin Baja}} & 
+        \shortstack{\textbf{Accid.} \\ \textbf{Con Baja}} & 
+        \shortstack{\textbf{Días} \\ \textbf{Baja}} & 
+        \textbf{Aclaración / Notas} \\
+        \midrule
+        ene-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        feb-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        mar-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        abr-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        may-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        jun-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        jul-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        ago-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        sep-26 & 24 & 15 & 8 & 2,880 & 1 & 0 & 1 & 5 & Laceración distal dedo mano derech. en FFG BK. \\
+        oct-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        nov-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        dic-26 & 24 & 15 & 8 & 2,880 & 0 & 0 & 0 & 0 & Sin novedades operativas. \\
+        \midrule
+        \textbf{TOTAL} & \textbf{288} & \textbf{15} & \textbf{8} & \textbf{34,560} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{5} & \textbf{Dosis de exposición acumulada anual.} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{Indicadores de Siniestralidad (Gestión 2026)}
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Mes} & \textbf{IF Mensual} & \textbf{IG Mensual} & \textbf{II Mensual} \\
+        \midrule
+        ene-26 & 0.00 & 0.00 & 0.00 \\
+        feb-26 & 0.00 & 0.00 & 0.00 \\
+        mar-26 & 0.00 & 0.00 & 0.00 \\
+        abr-26 & 0.00 & 0.00 & 0.00 \\
+        may-26 & 0.00 & 0.00 & 0.00 \\
+        jun-26 & 0.00 & 0.00 & 0.00 \\
+        jul-26 & 0.00 & 0.00 & 0.00 \\
+        ago-26 & 0.00 & 0.00 & 0.00 \\
+        sep-26 & 347.22 & 1.74 & 66.67 \\
+        oct-26 & 0.00 & 0.00 & 0.00 \\
+        nov-26 & 0.00 & 0.00 & 0.00 \\
+        dic-26 & 0.00 & 0.00 & 0.00 \\
+        \midrule
+        \textbf{TOTAL ACUM.} & \textbf{28.93} & \textbf{0.14} & \textbf{66.67} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\subsubsection{1.5 Respaldo de Investigaciones de Alto Potencial}
+Registros de incidentes graves de la gestión incurso. No aplica presentación para este informe preliminar.
+
+\subsubsection{1.6 Formularios de Denuncia ante Entidades Competentes}
+Copias físicas de las denuncias de accidentes presentadas ante la AFP y Caja de Salud. No aplica presentación para este informe.
+
+\newpage
+% ==============================================================================
+% PUNTO 12
+% ==============================================================================
+\section{PUNTO 12: Medicina del Trabajo y Salud Ocupacional}
+\controlcambios
+\resumenrevision{1}
+\subsection{1. Medicina del Trabajo y Salud Ocupacional}
+
+La Vigilancia de la Salud en la planta de EMPACAR S.A. es gestionada por el área de Medicina del Trabajo, en estricto cumplimiento del Decreto Ley Nº 16998 y la norma **NTS-009/23**. El objetivo es realizar una monitorización clínica preventiva e individualizada de los trabajadores en función de sus riesgos específicos (exposición al ruido en convertidoras, manejo de aminas y solventes en cocina de tintas, y sobreesfuerzo biomecánico lumbar).
+
+\subsubsection{1.1 Afiliación de los trabajadores al seguro de corto y largo plazo}
+En conformidad con la Ley General del Trabajo de Bolivia, todo el personal en planilla de la División de Corrugado cuenta con la correspondiente afiliación activa a la Caja Nacional de Salud (CNS) u otra entidad gestora autorizada para la cobertura médica de corto plazo, y al sistema de pensiones (aseguramiento a largo plazo). Las planillas patronales de pago mensual se custodian en la Dirección de Personas y Organización, listas para inspecciones del Ministerio de Trabajo. \textit{Racional Clínico}: Garantizar que el trabajador tenga acceso inmediato a servicios médicos de urgencia y rehabilitación en caso de sufrir un accidente de trabajo grave o desarrollar una patología profesional incapacitante.
+
+\subsubsection{1.2 Exámenes médicos preocupacionales}
+Tienen carácter obligatorio y deben ser ejecutados antes de la contratación física del trabajador. El examen preocupacional del operario de cocina o convertidora comprende un protocolo médico estandarizado:
+\begin{itemize}
+    \item \textbf{Anamnesis Clínica y Laboral Dirigida}: Centrada en antecedentes otológicos (exposición a ruido previo, trauma acústico, tinnitus), respiratorios (alergias, asma bronquial) y osteomusculares (historia de lumbalgias o hernias).
+    \item \textbf{Exploración Física Completa}: Enfocada en la integridad osteotendinosa y dermatológica basal.
+    \item \textbf{Audiometría Tonal Basal (Norma ISO 6189 / ANSI S3.6)}: Realizada en cabina insonorizada tras un reposo auditivo mínimo de 14 horas sin exposición a ruido recreativo o laboral. Establece la línea base de los umbrales de conducción aérea del trabajador a las frecuencias de 250, 500, 1000, 2000, 3000, 4000, 6000 y 8000 Hz en ambos oídos.
+    \item \textbf{Espirometría Basal (Normas ATS/ERS)}: Evaluación de la función pulmonar mediante la medición de la Capacidad Vital Forzada (FVC), el Volumen Espiratorio Forzado en el primer segundo ($FEV_1$), y la relación $FEV_1$/FVC. Esto permite descartar patologías restrictivas u obstructivas latentes.
+    \item \textbf{Evaluación Osteomuscular Completa}: Aplicación de la batería de pruebas de Kraus-Weber, rangos de movilidad articular de la columna lumbar y evaluación de fuerza muscular, para asegurar que el operario cumple con los requerimientos biomecánicos de levantamiento manual de cargas pesadas.
+\end{itemize}
+
+\subsubsection{1.3 Exámenes médicos intraocupacionales (Periódicos)}
+Se realizan anualmente de acuerdo con la matriz de riesgos IPER de cada puesto:
+\begin{itemize}
+    \item \textbf{Para Operadores de Convertidoras FFG (Riesgo Físico - Ruido)}:
+    Monitoreo audiométrico de control anual. El médico del trabajo analiza de forma comparativa los resultados frente a la audiometría preocupacional (línea base). Clínicamente, se define un **Desplazamiento Estándar del Umbral (STS - Standard Threshold Shift)** si se detecta una pérdida auditiva promedio acumulada igual o superior a **10 dB en las frecuencias críticas de 2,000, 3,000 y 4,000 Hz** en cualquiera de los oídos. Ante la confirmación de un STS, el área médica activa el protocolo de conservación auditiva, obligando al uso de doble protección auditiva, restricción temporal de exposición a ruido mediante rotación de puesto a áreas administrativas, y la reevaluación de los controles de ingeniería en la convertidora emisora.
+    \item \textbf{Para Operarios de Cocina de Tintas (Riesgos Químico e Irritativo)}:
+    \begin{itemize}
+        \item \textbf{Monitoreo Pulmonar}: Espirometría anual para detectar de forma precoz descensos significativos en el $FEV_1$ que apunten a broncoespasmos inducidos por aminas volátiles.
+        \item \textbf{Monitoreo Dermatológico}: Inspección de manos y extremidades superiores para detectar signos incipientes de eccema, eritema o descamación epidérmica compatible con dermatitis de contacto irritativa.
+        \item \textbf{Monitoreo Bioquímico}: Determinación de biomarcadores plasmáticos de función hepática (transaminasas GOT, GPT) y renal (creatinina, urea) en caso de que se manipulen diluyentes orgánicos o detergentes industriales de alta penetración.
+    \end{itemize}
+    \item \textbf{Evaluación Musculoesquelética Periódica}:
+    Aplicación del **Cuestionario Nórdico Estandarizado de Kuorinka** para mapear sintomatología de dolor o fatiga en zonas lumbares, dorsales, cervicales y muñecas, permitiendo programar pausas activas y ejercicios compensatorios fisioterápicos guiados.
+\end{itemize}
+
+\subsubsection{1.4 Exámenes médicos postocupacionales (De Egreso)}
+Se programan obligatoriamente cuando finaliza el vínculo laboral del operario con la compañía. Comprende un examen físico general completo, una audiometría tonal de egreso y una espirometría de control. \textit{Racional Médico-Legal}: Registrar de manera fehaciente el estado de salud psicofísica del trabajador al momento de retirarse de la empresa. Esto permite deslindar responsabilidades legales o documentar si existe alguna hipoacusia o incapacidad respiratoria de origen ocupacional desarrollada durante su permanencia, sirviendo de base para la calificación de enfermedad profesional ante los entes gestores.
+
+\subsubsection{1.5 Procedimiento para la evaluación y prevención del riesgo psicosocial}
+El riesgo psicosocial se evalúa de forma anual para todo el personal operativo de corrugado, reconociendo que los factores de organización del trabajo impactan directamente en la salud del trabajador y en la tasa de accidentabilidad.
+\begin{itemize}
+    \item \textbf{Metodología de Evaluación (Cuestionario CoPsoQ / ISTAS-21)}: Se utiliza el Copenhagen Psychosocial Questionnaire (adaptación ISTAS-21), el cual analiza las siguientes dimensiones clave:
+    \begin{enumerate}
+        \item \textbf{Exigencias Psicológicas}: Carga cognitiva, ritmo de trabajo forzado por la velocidad de las FFG y demandas emocionales.
+        \item \textbf{Trabajo Activo y Desarrollo}: Grado de autonomía y control del operario sobre sus tareas.
+        \item \textbf{Relaciones Sociales y Liderazgo}: Calidad del liderazgo de supervisión, claridad de rol, y apoyo social de los compañeros.
+        \item \textbf{Doble Presencia}: Conflictos de conciliación entre la vida familiar y laboral.
+    \end{enumerate}
+    \item \textbf{Intervención Preventiva}: Los resultados son analizados de forma anónima por un psicólogo ocupacional. Aquellas dimensiones que arrojen un nivel de riesgo alto (ej. alta demanda de tiempo o bajo apoyo de supervisión) son abordadas mediante rediseño ergonómico de turnos rotativos, programas de pausas activas cognitivas, capacitación en comunicación asertiva para supervisores, y la promoción del principio HOP de Cultura Justa.
+\end{itemize}
+\end{document}
