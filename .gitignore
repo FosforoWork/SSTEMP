@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# Documentación Privada y Compilaciones de LaTeX
+Sitio Web Seguridad/docs/EstructuraFinal.md
+Sitio Web Seguridad/docs/InformeSeguridad.tex
+Sitio Web Seguridad/docs/*.aux
+Sitio Web Seguridad/docs/*.out
+Sitio Web Seguridad/docs/*.toc
+Sitio Web Seguridad/docs/*.synctex.gz
+Sitio Web Seguridad/docs/*.pdf
+
+# Accesos directos
+.bat
