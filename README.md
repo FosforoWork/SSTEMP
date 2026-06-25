@@ -115,3 +115,12 @@ Para proteger la información confidencial de la organización y el análisis de
 *   **`Sitio Web Seguridad/docs/InformeSeguridad.tex`** - Reporte completo de auditoría y análisis de seguridad física/digital.
 
 *Nota: Estos archivos se mantendrán localmente pero nunca serán subidos al repositorio público de Git.*
+
+---
+
+## ✒️ Autor y Licencia
+
+Este proyecto ha sido desarrollado en su totalidad por:
+*   **Autor:** Samuel Aguilera
+*   **Licencia:** Este proyecto se distribuye bajo la [Licencia MIT](LICENSE) (de código abierto). Para más detalles, consulta el archivo [LICENSE](LICENSE) en la raíz del repositorio.
+

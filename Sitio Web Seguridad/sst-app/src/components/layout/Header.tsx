@@ -104,9 +104,15 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="border-t pt-4 mt-auto">
-              <p className="text-xs text-muted-foreground text-center">
-                SST &copy; 2026
+            <div className="border-t pt-4 mt-auto space-y-1">
+              <p className="text-[10px] text-muted-foreground text-center font-semibold">
+                SISTEMA DE GESTIÓN SST
+              </p>
+              <p className="text-[9px] text-muted-foreground/80 text-center font-medium">
+                Desarrollado por <span className="font-bold text-foreground/80">Samuel Aguilera</span>
+              </p>
+              <p className="text-[8px] text-muted-foreground/60 text-center uppercase tracking-wider">
+                Licencia MIT &copy; 2026
               </p>
             </div>
           </div>

@@ -1,6 +1,8 @@
 {
   "name": "sst-app",
   "private": true,
+  "author": "Samuel Aguilera",
+  "license": "MIT",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
