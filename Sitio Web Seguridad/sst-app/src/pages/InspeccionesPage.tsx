@@ -10,7 +10,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { getModule, setModule, genId } from '@/lib/storage'
+import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
+import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import type { Inspeccion } from '@/types'
 
@@ -31,20 +33,30 @@ export default function InspeccionesPage() {
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
-  useEffect(() => { setList(getModule('inspecciones')) }, [])
+  useEffect(() => {
+    const q = query(collection(db, 'inspecciones'))
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Inspeccion))
+      setList(items)
+    })
+    return () => unsubscribe()
+  }, [])
 
-  const save = (data: Inspeccion[]) => { setList(data); setModule('inspecciones', data) }
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (editing) {
-      save(list.map(r => (r.id === editing ? { ...r, ...form } : r)))
-      toast.success('Inspección actualizada')
-    } else {
-      save([...list, { id: genId(), ...form }])
-      toast.success('Inspección agregada')
+    try {
+      const id = editing || genId()
+      await setDoc(doc(db, 'inspecciones', id), { id, ...form })
+      if (editing) {
+        toast.success('Inspección actualizada')
+      } else {
+        toast.success('Inspección agregada')
+      }
+      setForm(emptyForm); setEditing(null); setOpen(false)
+    } catch (err) {
+      toast.error('Error al guardar la inspección')
+      console.error(err)
     }
-    setForm(emptyForm); setEditing(null); setOpen(false)
   }
 
   const handleEdit = (r: Inspeccion) => {
@@ -52,12 +64,18 @@ export default function InspeccionesPage() {
     setEditing(r.id); setOpen(true)
   }
 
-  const handleDelete = (id: string) => {
-    save(list.filter(r => r.id !== id))
-    toast.success('Inspección eliminada')
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteDoc(doc(db, 'inspecciones', id))
+      toast.success('Inspección eliminada')
+    } catch (err) {
+      toast.error('Error al eliminar la inspección')
+      console.error(err)
+    }
   }
 
   const handleExport = () => {
+
     const headers = ['Fecha', 'Lugar', 'Responsable', 'Tipo', 'Hallazgos', 'Recomendaciones', 'Estado']
     const rows = list.map(r => [r.fecha, r.lugar, r.responsable, r.tipo, r.hallazgos, r.recomendaciones, r.estado])
     downloadCSV('sst_inspecciones', headers, rows)

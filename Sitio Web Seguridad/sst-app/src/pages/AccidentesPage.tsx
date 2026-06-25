@@ -7,7 +7,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { getModule, setModule, genId } from '@/lib/storage'
+import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
+import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import type { Accidente } from '@/types'
 
@@ -22,26 +24,36 @@ export default function AccidentesPage() {
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
-  useEffect(() => { setList(getModule('accidentes')) }, [])
+  useEffect(() => {
+    const q = query(collection(db, 'accidentes'))
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Accidente))
+      setList(items)
+    })
+    return () => unsubscribe()
+  }, [])
 
   const hh = useMemo(() => form.dias * form.trabajadores * form.horasDiarias, [form.dias, form.trabajadores, form.horasDiarias])
   const ifVal = useMemo(() => (hh > 0 ? (form.conBaja / hh) * 1000000 : 0), [hh, form.conBaja])
   const igVal = useMemo(() => (hh > 0 ? (form.diasBaja / hh) * 1000000 : 0), [hh, form.diasBaja])
   const iiVal = useMemo(() => (ifVal * igVal) / 1000, [ifVal, igVal])
 
-  const save = (data: Accidente[]) => { setList(data); setModule('accidentes', data) }
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const record = { ...form, hh, if: ifVal, ig: igVal, ii: iiVal }
-    if (editing) {
-      save(list.map(r => (r.id === editing ? { ...r, ...record } : r)))
-      toast.success('Estadística actualizada')
-    } else {
-      save([...list, { id: genId(), ...record }])
-      toast.success('Estadística agregada')
+    try {
+      const id = editing || genId()
+      await setDoc(doc(db, 'accidentes', id), { id, ...record })
+      if (editing) {
+        toast.success('Estadística actualizada')
+      } else {
+        toast.success('Estadística agregada')
+      }
+      setForm(emptyForm); setEditing(null); setOpen(false)
+    } catch (err) {
+      toast.error('Error al guardar la estadística')
+      console.error(err)
     }
-    setForm(emptyForm); setEditing(null); setOpen(false)
   }
 
   const handleEdit = (r: Accidente) => {
@@ -49,9 +61,14 @@ export default function AccidentesPage() {
     setEditing(r.id); setOpen(true)
   }
 
-  const handleDelete = (id: string) => {
-    save(list.filter(r => r.id !== id))
-    toast.success('Estadística eliminada')
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteDoc(doc(db, 'accidentes', id))
+      toast.success('Estadística eliminada')
+    } catch (err) {
+      toast.error('Error al eliminar la estadística')
+      console.error(err)
+    }
   }
 
   const handleExport = () => {

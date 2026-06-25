@@ -8,7 +8,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { getModule, setModule, genId } from '@/lib/storage'
+import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
+import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import type { Cambio } from '@/types'
 
@@ -23,22 +25,32 @@ export default function CambiosPage() {
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
-  useEffect(() => { setList(getModule('cambios')) }, [])
+  useEffect(() => {
+    const q = query(collection(db, 'cambios'))
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Cambio))
+      setList(items)
+    })
+    return () => unsubscribe()
+  }, [])
 
-  const save = (data: Cambio[]) => { setList(data); setModule('cambios', data) }
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (editing) {
-      save(list.map(r => (r.id === editing ? { ...r, ...form } : r)))
-      toast.success('Registro actualizado')
-    } else {
-      save([...list, { id: genId(), ...form }])
-      toast.success('Registro agregado')
+    try {
+      const id = editing || genId()
+      await setDoc(doc(db, 'cambios', id), { id, ...form })
+      if (editing) {
+        toast.success('Registro actualizado')
+      } else {
+        toast.success('Registro agregado')
+      }
+      setForm(emptyForm)
+      setEditing(null)
+      setOpen(false)
+    } catch (err) {
+      toast.error('Error al guardar el registro')
+      console.error(err)
     }
-    setForm(emptyForm)
-    setEditing(null)
-    setOpen(false)
   }
 
   const handleEdit = (r: Cambio) => {
@@ -52,9 +64,14 @@ export default function CambiosPage() {
     setOpen(true)
   }
 
-  const handleDelete = (id: string) => {
-    save(list.filter(r => r.id !== id))
-    toast.success('Registro eliminado')
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteDoc(doc(db, 'cambios', id))
+      toast.success('Registro eliminado')
+    } catch (err) {
+      toast.error('Error al eliminar el registro')
+      console.error(err)
+    }
   }
 
   const handleExport = () => {
@@ -62,6 +79,7 @@ export default function CambiosPage() {
     const rows = list.map(r => [r.version, r.fecha, r.descripcion, r.cargoElab, r.nombreElab, r.cargoRev, r.nombreRev, r.cargoApr, r.nombreApr])
     downloadCSV('sst_cambios', headers, rows)
   }
+
 
   return (
     <ModulePage title="Control de Cambios" description="Registro de versiones y revisiones del documento" onExportCSV={handleExport}

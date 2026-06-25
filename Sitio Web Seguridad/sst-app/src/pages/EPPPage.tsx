@@ -7,7 +7,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { getModule, setModule, genId } from '@/lib/storage'
+import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
+import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import type { EPP } from '@/types'
 
@@ -21,20 +23,30 @@ export default function EPPPage() {
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
-  useEffect(() => { setList(getModule('epp')) }, [])
+  useEffect(() => {
+    const q = query(collection(db, 'epp'))
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as EPP))
+      setList(items)
+    })
+    return () => unsubscribe()
+  }, [])
 
-  const save = (data: EPP[]) => { setList(data); setModule('epp', data) }
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (editing) {
-      save(list.map(r => (r.id === editing ? { ...r, ...form } : r)))
-      toast.success('Dotación actualizada')
-    } else {
-      save([...list, { id: genId(), ...form }])
-      toast.success('Dotación agregada')
+    try {
+      const id = editing || genId()
+      await setDoc(doc(db, 'epp', id), { id, ...form })
+      if (editing) {
+        toast.success('Dotación actualizada')
+      } else {
+        toast.success('Dotación agregada')
+      }
+      setForm(emptyForm); setEditing(null); setOpen(false)
+    } catch (err) {
+      toast.error('Error al guardar la dotación')
+      console.error(err)
     }
-    setForm(emptyForm); setEditing(null); setOpen(false)
   }
 
   const handleEdit = (r: EPP) => {
@@ -42,9 +54,14 @@ export default function EPPPage() {
     setEditing(r.id); setOpen(true)
   }
 
-  const handleDelete = (id: string) => {
-    save(list.filter(r => r.id !== id))
-    toast.success('Dotación eliminada')
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteDoc(doc(db, 'epp', id))
+      toast.success('Dotación personalizada')
+    } catch (err) {
+      toast.error('Error al eliminar la dotación')
+      console.error(err)
+    }
   }
 
   const handleExport = () => {

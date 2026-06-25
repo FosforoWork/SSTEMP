@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { getModule, setModule } from '@/lib/storage'
+import { doc, onSnapshot, setDoc } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
 import { downloadCSV } from '@/lib/csv'
 import type { Empresa } from '@/types'
 
@@ -29,17 +30,27 @@ export default function EmpresaPage() {
   const [data, setData] = useState<Empresa>({})
 
   useEffect(() => {
-    setData(getModule('empresa'))
+    const unsubscribe = onSnapshot(doc(db, 'empresa', 'info'), (docSnap) => {
+      if (docSnap.exists()) {
+        setData(docSnap.data() as Empresa)
+      }
+    })
+    return () => unsubscribe()
   }, [])
 
   const handleChange = (field: keyof Empresa, value: string) => {
     setData(prev => ({ ...prev, [field]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setModule('empresa', data)
-    toast.success('Datos de la empresa guardados')
+    try {
+      await setDoc(doc(db, 'empresa', 'info'), data)
+      toast.success('Datos de la empresa guardados')
+    } catch (err) {
+      toast.error('Error al guardar datos de la empresa')
+      console.error(err)
+    }
   }
 
   const handleExport = () => {
@@ -95,3 +106,4 @@ export default function EmpresaPage() {
     </ModulePage>
   )
 }
+

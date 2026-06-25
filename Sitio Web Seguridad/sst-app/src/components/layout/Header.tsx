@@ -30,7 +30,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="glass-header">
         <div className="flex h-14 items-center gap-4 px-4 lg:px-6">
           <Button
             variant="ghost"
@@ -44,10 +44,10 @@ export default function Header() {
 
           <FileText className="h-6 w-6 text-primary" />
           <div className="flex-1">
-            <h1 className="text-sm font-semibold leading-tight sm:text-base">
+            <h1 className="text-sm font-bold leading-tight sm:text-base gradient-title">
               Programa de Gestión de Seguridad y Salud en el Trabajo
             </h1>
-            <p className="text-xs text-muted-foreground hidden sm:block">
+            <p className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">
               Sistema de registro y seguimiento SST
             </p>
           </div>
@@ -91,10 +91,10 @@ export default function Header() {
                   to={to}
                   className={({ isActive }) =>
                     cn(
-                      'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                      'flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 border border-transparent',
                       isActive
-                        ? 'bg-primary/10 text-primary'
-                        : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                        ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10 border-primary/20'
+                        : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:translate-x-1'
                     )
                   }
                 >

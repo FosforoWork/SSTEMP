@@ -9,7 +9,9 @@ import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { getModule, setModule, genId } from '@/lib/storage'
+import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
+import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import { calcNivel } from '@/types'
 import type { IPER } from '@/types'
@@ -32,24 +34,34 @@ export default function IPERPage() {
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
-  useEffect(() => { setList(getModule('iper')) }, [])
+  useEffect(() => {
+    const q = query(collection(db, 'iper'))
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as IPER))
+      setList(items)
+    })
+    return () => unsubscribe()
+  }, [])
 
   const gp = useMemo(() => form.consecuencias * form.exposicion * form.probabilidad, [form.consecuencias, form.exposicion, form.probabilidad])
   const nivel = useMemo(() => calcNivel(gp), [gp])
 
-  const save = (data: IPER[]) => { setList(data); setModule('iper', data) }
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const record = { ...form, gp, nivel }
-    if (editing) {
-      save(list.map(r => (r.id === editing ? { ...r, ...record } : r)))
-      toast.success('Riesgo actualizado')
-    } else {
-      save([...list, { id: genId(), ...record }])
-      toast.success('Riesgo agregado')
+    try {
+      const id = editing || genId()
+      await setDoc(doc(db, 'iper', id), { id, ...record })
+      if (editing) {
+        toast.success('Riesgo actualizado')
+      } else {
+        toast.success('Riesgo agregado')
+      }
+      setForm(emptyForm); setEditing(null); setOpen(false)
+    } catch (err) {
+      toast.error('Error al guardar el riesgo')
+      console.error(err)
     }
-    setForm(emptyForm); setEditing(null); setOpen(false)
   }
 
   const handleEdit = (r: IPER) => {
@@ -57,9 +69,14 @@ export default function IPERPage() {
     setEditing(r.id); setOpen(true)
   }
 
-  const handleDelete = (id: string) => {
-    save(list.filter(r => r.id !== id))
-    toast.success('Riesgo eliminado')
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteDoc(doc(db, 'iper', id))
+      toast.success('Riesgo eliminado')
+    } catch (err) {
+      toast.error('Error al eliminar el riesgo')
+      console.error(err)
+    }
   }
 
   const handleExport = () => {
