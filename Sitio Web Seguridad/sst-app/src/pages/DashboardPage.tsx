@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import ModulePage from '@/components/shared/ModulePage'
 import { useState, useEffect } from 'react'
 import { collection, onSnapshot, doc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { useUserDb } from '@/hooks/useUserDb'
 
 const modules = [
   { key: 'cambios' as const, label: 'Control Cambios', icon: FileStack, desc: 'Versiones y revisiones' },
@@ -17,6 +17,7 @@ const modules = [
 ]
 
 export default function DashboardPage() {
+  const { getCollection, getDoc } = useUserDb()
   const [empresa, setEmpresa] = useState<any>(null)
   const [activeCounts, setActiveCounts] = useState({
     cambios: 0,
@@ -28,7 +29,7 @@ export default function DashboardPage() {
   })
 
   useEffect(() => {
-    const unsubEmpresa = onSnapshot(doc(db, 'empresa', 'info'), (docSnap) => {
+    const unsubEmpresa = onSnapshot(getDoc('empresa', 'info'), (docSnap) => {
       if (docSnap.exists()) {
         setEmpresa(docSnap.data())
       } else {
@@ -38,7 +39,7 @@ export default function DashboardPage() {
 
     const collections = ['cambios', 'iper', 'accidentes', 'capacitaciones', 'epp', 'inspecciones'] as const
     const unsubs = collections.map((col) => {
-      return onSnapshot(collection(db, col), (snapshot) => {
+      return onSnapshot(getCollection(col), (snapshot) => {
         setActiveCounts((prev) => ({
           ...prev,
           [col]: snapshot.size,

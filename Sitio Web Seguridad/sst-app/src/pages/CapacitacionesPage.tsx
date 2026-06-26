@@ -8,8 +8,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { collection, onSnapshot, query, setDoc, deleteDoc } from 'firebase/firestore'
+import { useUserDb } from '@/hooks/useUserDb'
 import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import type { Capacitacion } from '@/types'
@@ -19,13 +19,14 @@ const emptyForm: Omit<Capacitacion, 'id'> = {
 }
 
 export default function CapacitacionesPage() {
+  const { getCollection, getDoc } = useUserDb()
   const [list, setList] = useState<Capacitacion[]>([])
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
   useEffect(() => {
-    const q = query(collection(db, 'capacitaciones'))
+    const q = query(getCollection('capacitaciones'))
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Capacitacion))
       setList(items)
@@ -37,7 +38,7 @@ export default function CapacitacionesPage() {
     e.preventDefault()
     try {
       const id = editing || genId()
-      await setDoc(doc(db, 'capacitaciones', id), { id, ...form })
+      await setDoc(getDoc('capacitaciones', id), { id, ...form })
       if (editing) {
         toast.success('Capacitación actualizada')
       } else {
@@ -57,7 +58,7 @@ export default function CapacitacionesPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteDoc(doc(db, 'capacitaciones', id))
+      await deleteDoc(getDoc('capacitaciones', id))
       toast.success('Capacitación eliminada')
     } catch (err) {
       toast.error('Error al eliminar la capacitación')

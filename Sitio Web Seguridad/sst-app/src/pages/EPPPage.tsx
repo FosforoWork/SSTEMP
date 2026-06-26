@@ -7,8 +7,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { collection, onSnapshot, query, setDoc, deleteDoc } from 'firebase/firestore'
+import { useUserDb } from '@/hooks/useUserDb'
 import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import type { EPP } from '@/types'
@@ -18,13 +18,14 @@ const emptyForm: Omit<EPP, 'id'> = {
 }
 
 export default function EPPPage() {
+  const { getCollection, getDoc } = useUserDb()
   const [list, setList] = useState<EPP[]>([])
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
   useEffect(() => {
-    const q = query(collection(db, 'epp'))
+    const q = query(getCollection('epp'))
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as EPP))
       setList(items)
@@ -36,7 +37,7 @@ export default function EPPPage() {
     e.preventDefault()
     try {
       const id = editing || genId()
-      await setDoc(doc(db, 'epp', id), { id, ...form })
+      await setDoc(getDoc('epp', id), { id, ...form })
       if (editing) {
         toast.success('Dotación actualizada')
       } else {
@@ -56,7 +57,7 @@ export default function EPPPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteDoc(doc(db, 'epp', id))
+      await deleteDoc(getDoc('epp', id))
       toast.success('Dotación personalizada')
     } catch (err) {
       toast.error('Error al eliminar la dotación')

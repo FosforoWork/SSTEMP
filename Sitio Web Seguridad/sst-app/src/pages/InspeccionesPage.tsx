@@ -10,8 +10,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { collection, onSnapshot, query, setDoc, deleteDoc } from 'firebase/firestore'
+import { useUserDb } from '@/hooks/useUserDb'
 import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import type { Inspeccion } from '@/types'
@@ -28,13 +28,14 @@ const ESTADO_VARIANT: Record<string, 'destructive' | 'warning' | 'success'> = {
 }
 
 export default function InspeccionesPage() {
+  const { getCollection, getDoc } = useUserDb()
   const [list, setList] = useState<Inspeccion[]>([])
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
   useEffect(() => {
-    const q = query(collection(db, 'inspecciones'))
+    const q = query(getCollection('inspecciones'))
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Inspeccion))
       setList(items)
@@ -46,7 +47,7 @@ export default function InspeccionesPage() {
     e.preventDefault()
     try {
       const id = editing || genId()
-      await setDoc(doc(db, 'inspecciones', id), { id, ...form })
+      await setDoc(getDoc('inspecciones', id), { id, ...form })
       if (editing) {
         toast.success('Inspección actualizada')
       } else {
@@ -66,7 +67,7 @@ export default function InspeccionesPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteDoc(doc(db, 'inspecciones', id))
+      await deleteDoc(getDoc('inspecciones', id))
       toast.success('Inspección eliminada')
     } catch (err) {
       toast.error('Error al eliminar la inspección')

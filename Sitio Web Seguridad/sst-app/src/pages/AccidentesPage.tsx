@@ -7,8 +7,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { collection, onSnapshot, query, setDoc, deleteDoc } from 'firebase/firestore'
+import { useUserDb } from '@/hooks/useUserDb'
 import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import type { Accidente } from '@/types'
@@ -19,13 +19,14 @@ const emptyForm: Omit<Accidente, 'id' | 'hh' | 'if' | 'ig' | 'ii'> = {
 }
 
 export default function AccidentesPage() {
+  const { getCollection, getDoc } = useUserDb()
   const [list, setList] = useState<Accidente[]>([])
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
   useEffect(() => {
-    const q = query(collection(db, 'accidentes'))
+    const q = query(getCollection('accidentes'))
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Accidente))
       setList(items)
@@ -43,7 +44,7 @@ export default function AccidentesPage() {
     const record = { ...form, hh, if: ifVal, ig: igVal, ii: iiVal }
     try {
       const id = editing || genId()
-      await setDoc(doc(db, 'accidentes', id), { id, ...record })
+      await setDoc(getDoc('accidentes', id), { id, ...record })
       if (editing) {
         toast.success('Estadística actualizada')
       } else {
@@ -63,7 +64,7 @@ export default function AccidentesPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteDoc(doc(db, 'accidentes', id))
+      await deleteDoc(getDoc('accidentes', id))
       toast.success('Estadística eliminada')
     } catch (err) {
       toast.error('Error al eliminar la estadística')

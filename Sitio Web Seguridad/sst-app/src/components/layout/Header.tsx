@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { Moon, Sun, FileText, Menu, X } from 'lucide-react'
+import { Moon, Sun, FileText, Menu, X, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from './ThemeProvider'
+import { useAuth } from '@/contexts/AuthContext'
 import { links } from './Sidebar'
 import { cn } from '@/lib/utils'
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
+  const { user, logout } = useAuth()
   const location = useLocation()
 
   // Close mobile navigation drawer when location changes
@@ -51,9 +53,16 @@ export default function Header() {
               Sistema de registro y seguimiento SST
             </p>
           </div>
-          <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Cambiar tema">
-            {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-          </Button>
+          <div className="flex items-center gap-2">
+            {user && (
+              <span className="hidden md:inline-block text-xs font-semibold text-muted-foreground mr-1 border border-border rounded-lg px-2.5 py-1.5 bg-muted/40 max-w-[200px] truncate" title={user.email || ''}>
+                {user.email}
+              </span>
+            )}
+            <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Cambiar tema">
+              {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -84,24 +93,45 @@ export default function Header() {
               </Button>
             </div>
 
-            <nav className="flex-1 space-y-1 overflow-y-auto pr-1">
-              {links.map(({ to, label, icon: Icon }) => (
-                <NavLink
-                  key={to}
-                  to={to}
-                  className={({ isActive }) =>
-                    cn(
-                      'flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 border border-transparent',
-                      isActive
-                        ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10 border-primary/20'
-                        : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:translate-x-1'
-                    )
-                  }
-                >
-                  <Icon className="h-4 w-4" />
-                  {label}
-                </NavLink>
-              ))}
+            {user && (
+              <div className="mb-4 pb-4 border-b border-border/80">
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Usuario activo</p>
+                <p className="text-xs font-semibold text-foreground truncate mt-1" title={user.email || ''}>
+                  {user.email}
+                </p>
+              </div>
+            )}
+
+            <nav className="flex-1 space-y-1 overflow-y-auto pr-1 flex flex-col justify-between">
+              <div className="space-y-1">
+                {links.map(({ to, label, icon: Icon }) => (
+                  <NavLink
+                    key={to}
+                    to={to}
+                    className={({ isActive }) =>
+                      cn(
+                        'flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 border border-transparent',
+                        isActive
+                          ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10 border-primary/20'
+                          : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:translate-x-1'
+                      )
+                    }
+                  >
+                    <Icon className="h-4 w-4" />
+                    {label}
+                  </NavLink>
+                ))}
+              </div>
+              <button
+                onClick={() => {
+                  setIsOpen(false)
+                  logout()
+                }}
+                className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 border border-transparent text-destructive hover:bg-destructive/10 hover:text-destructive mt-6 w-full"
+              >
+                <LogOut className="h-4 w-4" />
+                Cerrar Sesión
+              </button>
             </nav>
 
             <div className="border-t pt-4 mt-auto space-y-1">
@@ -121,3 +151,4 @@ export default function Header() {
     </>
   )
 }
+

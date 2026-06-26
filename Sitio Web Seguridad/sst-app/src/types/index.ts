@@ -102,3 +102,11 @@ export function calcNivel(gp: number): string {
   if (gp > 18) return 'Moderado'
   return 'Bajo'
 }
+
+export interface LoginCredentials {
+  email: string
+  password: string
+}
+
+export type RegisterCredentials = LoginCredentials
+

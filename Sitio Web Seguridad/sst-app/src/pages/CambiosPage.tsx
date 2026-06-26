@@ -8,8 +8,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { collection, onSnapshot, query, setDoc, deleteDoc } from 'firebase/firestore'
+import { useUserDb } from '@/hooks/useUserDb'
 import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import type { Cambio } from '@/types'
@@ -20,13 +20,14 @@ const emptyForm: Omit<Cambio, 'id'> = {
 }
 
 export default function CambiosPage() {
+  const { getCollection, getDoc } = useUserDb()
   const [list, setList] = useState<Cambio[]>([])
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
   useEffect(() => {
-    const q = query(collection(db, 'cambios'))
+    const q = query(getCollection('cambios'))
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Cambio))
       setList(items)
@@ -38,7 +39,7 @@ export default function CambiosPage() {
     e.preventDefault()
     try {
       const id = editing || genId()
-      await setDoc(doc(db, 'cambios', id), { id, ...form })
+      await setDoc(getDoc('cambios', id), { id, ...form })
       if (editing) {
         toast.success('Registro actualizado')
       } else {
@@ -66,7 +67,7 @@ export default function CambiosPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteDoc(doc(db, 'cambios', id))
+      await deleteDoc(getDoc('cambios', id))
       toast.success('Registro eliminado')
     } catch (err) {
       toast.error('Error al eliminar el registro')

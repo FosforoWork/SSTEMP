@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { useState, useEffect } from 'react'
-import { doc, onSnapshot } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { onSnapshot } from 'firebase/firestore'
+import { useUserDb } from '@/hooks/useUserDb'
+import { useAuth } from '@/contexts/AuthContext'
 import {
   Building2, FileStack, AlertTriangle, BarChart3,
-  GraduationCap, ShieldCheck, ClipboardCheck, LayoutDashboard,
+  GraduationCap, ShieldCheck, ClipboardCheck, LayoutDashboard, LogOut,
 } from 'lucide-react'
 
 export const links = [
@@ -20,10 +21,12 @@ export const links = [
 ]
 
 export default function Sidebar() {
+  const { getDoc } = useUserDb()
+  const { logout } = useAuth()
   const [empresaNombre, setEmpresaNombre] = useState('Empresa no registrada')
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(doc(db, 'empresa', 'info'), (docSnap) => {
+    const unsubscribe = onSnapshot(getDoc('empresa', 'info'), (docSnap) => {
       if (docSnap.exists()) {
         setEmpresaNombre((docSnap.data() as any).nombre || 'Empresa no registrada')
       } else {
@@ -43,24 +46,33 @@ export default function Sidebar() {
           </span>
         </div>
       </div>
-      <nav className="flex-1 space-y-1.5 p-4 overflow-y-auto">
-        {links.map(({ to, label, icon: Icon }) => (
-          <NavLink
-            key={to}
-            to={to}
-            className={({ isActive }) =>
-              cn(
-                'flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 border border-transparent',
-                isActive
-                  ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10 border-primary/20'
-                  : 'text-muted-foreground hover:bg-sidebar-accent hover:text-foreground hover:translate-x-1'
-              )
-            }
-          >
-            <Icon className="h-4 w-4" />
-            {label}
-          </NavLink>
-        ))}
+      <nav className="flex-1 space-y-1.5 p-4 overflow-y-auto flex flex-col">
+        <div className="space-y-1.5 flex-1">
+          {links.map(({ to, label, icon: Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                cn(
+                  'flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 border border-transparent',
+                  isActive
+                    ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10 border-primary/20'
+                    : 'text-muted-foreground hover:bg-sidebar-accent hover:text-foreground hover:translate-x-1'
+                )
+              }
+            >
+              <Icon className="h-4 w-4" />
+              {label}
+            </NavLink>
+          ))}
+        </div>
+        <button
+          onClick={logout}
+          className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 border border-transparent text-destructive hover:bg-destructive/10 hover:text-destructive mt-6"
+        >
+          <LogOut className="h-4 w-4" />
+          Cerrar Sesión
+        </button>
       </nav>
       <div className="border-t p-4 space-y-1.5 bg-sidebar-background/20">
         <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-wide">
@@ -76,3 +88,4 @@ export default function Sidebar() {
     </aside>
   )
 }
+

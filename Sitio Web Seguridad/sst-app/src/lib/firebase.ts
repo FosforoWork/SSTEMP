@@ -4,6 +4,7 @@ import {
   persistentLocalCache, 
   persistentMultipleTabManager 
 } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -17,9 +18,13 @@ const firebaseConfig = {
 // Inicializar App
 const app = initializeApp(firebaseConfig)
 
+// Inicializar Firebase Auth
+export const auth = getAuth(app)
+
 // Inicializar Firestore con soporte para caché persistente local de múltiples pestañas
 export const db = initializeFirestore(app, {
   localCache: persistentLocalCache({
     tabManager: persistentMultipleTabManager()
   })
 })
+

@@ -7,8 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { doc, onSnapshot, setDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { onSnapshot, setDoc } from 'firebase/firestore'
+import { useUserDb } from '@/hooks/useUserDb'
 import { downloadCSV } from '@/lib/csv'
 import type { Empresa } from '@/types'
 
@@ -27,10 +27,11 @@ const FIELDS: { id: keyof Empresa; label: string }[] = [
 ]
 
 export default function EmpresaPage() {
+  const { getDoc } = useUserDb()
   const [data, setData] = useState<Empresa>({})
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(doc(db, 'empresa', 'info'), (docSnap) => {
+    const unsubscribe = onSnapshot(getDoc('empresa', 'info'), (docSnap) => {
       if (docSnap.exists()) {
         setData(docSnap.data() as Empresa)
       }
@@ -45,7 +46,7 @@ export default function EmpresaPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      await setDoc(doc(db, 'empresa', 'info'), data)
+      await setDoc(getDoc('empresa', 'info'), data)
       toast.success('Datos de la empresa guardados')
     } catch (err) {
       toast.error('Error al guardar datos de la empresa')

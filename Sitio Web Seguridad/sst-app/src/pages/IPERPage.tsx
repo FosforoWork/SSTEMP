@@ -9,8 +9,8 @@ import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ModulePage, { FormCard } from '@/components/shared/ModulePage'
-import { collection, onSnapshot, query, doc, setDoc, deleteDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { collection, onSnapshot, query, setDoc, deleteDoc } from 'firebase/firestore'
+import { useUserDb } from '@/hooks/useUserDb'
 import { genId } from '@/lib/storage'
 import { downloadCSV } from '@/lib/csv'
 import { calcNivel } from '@/types'
@@ -29,13 +29,14 @@ const NIVEL_VARIANT: Record<string, 'danger' | 'warning' | 'default' | 'success'
 }
 
 export default function IPERPage() {
+  const { getCollection, getDoc } = useUserDb()
   const [list, setList] = useState<IPER[]>([])
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
 
   useEffect(() => {
-    const q = query(collection(db, 'iper'))
+    const q = query(getCollection('iper'))
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as IPER))
       setList(items)
@@ -51,7 +52,7 @@ export default function IPERPage() {
     const record = { ...form, gp, nivel }
     try {
       const id = editing || genId()
-      await setDoc(doc(db, 'iper', id), { id, ...record })
+      await setDoc(getDoc('iper', id), { id, ...record })
       if (editing) {
         toast.success('Riesgo actualizado')
       } else {
@@ -71,7 +72,7 @@ export default function IPERPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteDoc(doc(db, 'iper', id))
+      await deleteDoc(getDoc('iper', id))
       toast.success('Riesgo eliminado')
     } catch (err) {
       toast.error('Error al eliminar el riesgo')
